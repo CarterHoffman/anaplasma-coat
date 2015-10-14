@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<!-- Script written by Carter Hoffman (hoffman@vetmed.wsu.edu) -->
+
+<script src="scripts/matching_functions.js"></script>
+<script src="scripts/repeat_and_strains.js"></script>
+
+<link rel="stylesheet" type="text/css" href="styles/kansaspstyle.css" media="print" />
+<link rel="stylesheet" type="text/css" href="styles/scriptstyle.css" media="screen" />
+</head>
+<body>
+<div id='contain'>
+<form name="repeat">
+<ul>
+<li><h1>MSP1a Repeats</h1><p class='vrs'>v1.3</p><h3>from DNA or protien sequence</h3></li>
+<li>Copy and paste your DNA or protein sequence in the large box.  It doesn't matter if it's upper or lower case.  It also doesn't matter if there's white spaces, or carriage returns, or tabs, or numbers, or funny signs like '#' or '*' peppering the sequence.  The script will strip all that out and try to match any repeats in the string that remains.</li>
+<li><textarea cols='60' rows='5' name='basepair'></textarea></li>
+<li>
+	this sequence is <input type="button" value="DNA" onClick="handledna()">
+	<input type="button" value="protien" onClick="handleprotien()">
+	<span id='clearout'><input type="button" value="clear the boxes" onClick="erase()"></span>
+</li>
+
+<li>found in frame 1: <input type="text" name="theRepeat1" size="55"></li>
+<li>found in frame 2: <input type="text" name="theRepeat2" size="55"></li>
+<li>found in frame 3: <input type="text" name="theRepeat3" size="55"></li>
+<li>found in protien: <input type="text" name="theRepeat4" size="55"></li>
+</ul>
+</form>
+<p id='note'>Internet Explorer might alert you that it is restricting acitve content on this page.  For this script to work, you need to select the 'allow blocked content' option after clicking on the alert bar.</p>
+
+<ul>
+<li><a href='about.html'>about this script</a></li>
+<li><a href='index.html'>main page</a></li>
+</ul>
+</div>
+</body>
+</html>
