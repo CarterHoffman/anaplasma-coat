@@ -77,6 +77,11 @@ function chunkstring($sequence) {
 }
 
 function readingframe($transcription) {
+	/*
+		converts $transcription to protein codons, passes
+		to translation(), then to mystery(). if nothing matches,
+		then make a reverse compliment and try again
+	*/
 	var $kansas1=mystery(translation(chunkstring($transcription)));
 	var $kansas2=mystery(translation(chunkstring($transcription.slice(1))));
 	var $kansas3=mystery(translation(chunkstring($transcription.slice(2))));
@@ -96,6 +101,9 @@ function readingframe($transcription) {
 }
 
 function translation($beads) {
+	/*
+		this is probably unnessisary
+	*/
 	var $plaintext=new String;
 	for ($c=0; $c<$beads.length; $c++) {
 		var $codon=manifold($beads[$c]);
@@ -105,6 +113,9 @@ function translation($beads) {
 }
 
 function manifold($radiator) {
+	/*
+		holy crap, this is a job for a dictionary!
+	*/
 	var $aminoacid=new String;
 	$vane=$radiator.slice(0,2);
 	// collects all the AA that code with the first two bp
@@ -189,6 +200,10 @@ function manifold($radiator) {
 ++++++++++++++++++++++++++++++++
 	make reverse complement
 ++++++++++++++++++++++++++++++++
+*/
+
+/*
+	these can be replaced with one function
 */
 
 // strips oligo into an array for "downtown" to handle
@@ -338,6 +353,9 @@ function honker($letter, $place) {
 }
 
 function mystery($seq) {
+	/*
+		finds the strain name associated with the msp1a repeats
+	*/
 	//	convert aa sequence to lower case
 	// var $seqRaw=document.repeat.aminoacids.value;
 	// var $seq=$seqRaw.toLowerCase();
@@ -372,28 +390,7 @@ function mystery($seq) {
 		if ($aouga.length>0) {
 			$pitch=$aouga.join('');
 			$aouga=new Array();
-/*
-			switch ($windup) {
-			case "5\u0393\u0393\u0393":
-				$windup="5 \u0393 \u0393 \u0393"
-				break;
-			case "5\u03a6\u03a6\u03a6":
-				$windup="5 \u03a6 \u03a6 \u03a6";
-				break;
-			case "1 FM3":
-				$windup="1 F M 3";
-				break;
-			case "1 2M3":
-				$windup="1 2 M 3";
-				break;
-			case "1 4":
-				$windup="1 4";
-				break;
-			case "6777":
-				$windup="6 7 7 7"
-				break;
-			}
-*/
+
 			if ($isprotien=='yes'){
 				document.repeat.theRepeat4.value=$windup+" ("+$pitch+")";
 			} else {
