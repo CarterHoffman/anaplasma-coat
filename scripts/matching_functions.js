@@ -12,6 +12,14 @@ var $aouga=new Array();
 
 
 function handleprotien() {
+	/*
+		converts basepair.value to lowercase, and
+		replaces all the whitespace and non-word character.
+		sends to mystery()
+		
+		why is it fooling around with $isprotien? why have a global
+		variable determine what to do with the seqeunce? why is 'protien' misspelled?
+	*/
 	var $inquestion=document.repeat.basepair.value.toLowerCase().replace(/\s/g, '').replace(/\W/g, '');
 	$isprotien='yes';
 	mystery($inquestion);
@@ -19,12 +27,22 @@ function handleprotien() {
 }
 
 function handledna() {
+	/*
+		converts basepair.value to lowercase, and
+		replaces all the whitespace and non-word character.
+		sends to readingframe()		
+		
+		the sequence scrubbing needs to be moved to the 
+		functions that work with them, or write one scrubbing
+		function that assigns a variable
+	*/
 	var $basepairs=document.repeat.basepair.value.toLowerCase().replace(/\s/g, '').replace(/[^atgc]/g, '').replace(/[0-9]/g, '');
 	readingframe($basepairs);
 }
 
 
 function erase() {
+	// clears all the fields
 	document.repeat.basepair.value="";
 	document.repeat.theRepeat1.value="";
 	document.repeat.theRepeat2.value="";
@@ -34,6 +52,7 @@ function erase() {
 }
 
 function esplainin() {
+	// what's this? switching stylesheets?
 	if (hid.style.display=='none') {
 		hid.style.display='block';
 	} else {
@@ -48,6 +67,10 @@ function esplainin() {
 */
 
 function chunkstring($sequence) {
+	/*
+		converts a sequence string to an array of 3's
+		I think this can be reduced
+	*/
 	var $readingframe=new String;
 	var $splitsequence=$sequence.split('');
 	for($a=0; $a<($sequence.length/3); $a++) {
