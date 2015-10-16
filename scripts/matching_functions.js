@@ -69,18 +69,10 @@ function esplainin() {
 function chunkstring($sequence) {
 	/*
 		converts a sequence string to an array of 3's
-		I think this can be reduced
+		ignores any trailing base pairs that are less
+		than 3
 	*/
-	var $readingframe=new String;
-	var $splitsequence=$sequence.split('');
-	for($a=0; $a<($sequence.length/3); $a++) {
-		$b=$a*3;
-		if (($b+1<$sequence.length)&&($b+2<$sequence.length)) {
-			var $amino=$splitsequence[$b]+$splitsequence[$b+1]+$splitsequence[$b+2]+" ";
-			$readingframe=$readingframe.concat($amino);
-		}
-	}
-	$threemer=$readingframe.split(' ');
+	$threemer=$sequence.match(/\w{3}/g)
 	return $threemer;
 }
 
