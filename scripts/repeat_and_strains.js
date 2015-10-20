@@ -112,7 +112,7 @@ var $repeats=new Array();
 	$repeats[98]=Array(' EV7','tdsssassqqqessvlsqsdqastssqlg');
 	$repeats[99]=Array(' EV8','tdsssagdqqqgsgvssqsgqastssqsg');
 	
-		// more repeats from a paper to be cited later
+		// more repeats from PLoS One. 2013 Jun 11;8(6):e65243. doi: 10.1371/journal.pone.0065243
     $repeats[100]=Array(' 48','tdgssasgqqqessvlspsgqastssqlgvg');
     $repeats[101]=Array(' 49','tdgssagdqqqgsgvssqsgqastssqlg');
     $repeats[102]=Array(' 50','tdsssagdrqqgsgvssqsgqastssqlg');
