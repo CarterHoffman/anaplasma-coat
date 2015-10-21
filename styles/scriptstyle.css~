@@ -1,0 +1,83 @@
+
+body {
+	/* image from www.k10k.net */
+	background: url("../images/1529.gif") #fff;
+	font-family: "franklin gothic book", helvetica, san-serif, georgia;
+	line-height: 1.3em;
+	font-size: 15px;
+}
+
+ul {
+	margin: 0px;
+	padding: 0px;
+}
+li {
+	margin: 0px;
+	padding: 5px 0px;
+	list-style: none;
+}
+h1 {
+	font-size: 24px;
+	font-weight: normal;
+	margin: 0px;
+	padding: 0px;
+	display: inline;
+}
+h2 {
+	font-size: 20px;
+	font-weight: normal;
+	margin: 0px;
+	padding: 10px 0px 2px 0px;
+	border-bottom: 1px solid #373
+}
+
+h3 {
+	font-size: 12px;
+	font-weight: normal;
+	margin: 0px;
+	padding: 0px;
+
+}
+
+a {font-size: 13px;};
+a:link {color: #06c; text-decoration: none; border-bottom: 1px dashed #06c;}
+a:visited {color: #06c; text-decoration: none; border-bottom: 1px dashed #06c;}
+a:hover {text-decoration: none; background-color: #d8f0ff;}
+a:active {color: #06c; text-decoration: none; border-bottom: 1px dashed #06c;}
+
+#contain {
+	position: absolute;
+	left: 50%;
+	margin: 50px 0px 0px -200px;
+	padding: 50px;
+	width: 400px;
+	background-color: #fff;
+	border: 2px solid #373;
+	voice-family: "\"}\""; 
+	voice-family:inherit;
+	width: 506px;
+	margin: 50px 0px 0px -300px;
+
+}
+#hid {
+	/* display: none; */
+	font-size: 13px;
+}
+#note {
+	font-size: 12px;
+	font-style: italic;
+	color: #373;
+	line-height: 1.2em;
+}
+.vrs {
+	display: inline;
+	font-size: 12px;
+	font-style: italic;
+	color: #737;
+	padding: 0px 0px 0px 10px;
+}
+
+#clearout {
+	margin: 0px 0px 0px 50px;
+
+}
