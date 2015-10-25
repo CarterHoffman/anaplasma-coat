@@ -102,7 +102,9 @@ function readingframe($transcription) {
 
 function translation($beads) {
 	/*
-		this is probably unnessisary
+		this is probably unnessisary. it sends 3 codons to manifold()
+		at a time, then concats and returns.
+		merge the two functions
 	*/
 	var $plaintext=new String;
 	for ($c=0; $c<$beads.length; $c++) {
@@ -117,6 +119,9 @@ function manifold($radiator) {
 		holy crap, this is a job for a dictionary!
 	*/
 	var $aminoacid=new String;
+	
+	
+	/*
 	$vane=$radiator.slice(0,2);
 	// collects all the AA that code with the first two bp
 	if ($vane=='ac') {
@@ -193,6 +198,7 @@ function manifold($radiator) {
 			}
 		}
 	}
+	*/
 	return $aminoacid;
 }
 
