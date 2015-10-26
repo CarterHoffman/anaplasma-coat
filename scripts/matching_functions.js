@@ -66,30 +66,20 @@ function esplainin() {
 +++++++++++++++++++++++++++++++++++++++
 */
 
-function chunkstring($sequence) {
-	/*
-		converts a sequence string to an array of 3's
-		ignores any trailing base pairs that are less
-		than 3
-	*/
-	$threemer=$sequence.match(/\w{3}/g)
-	return $threemer;
-}
-
 function readingframe($transcription) {
 	/*
 		converts $transcription to protein codons, passes
 		to translation(), then to mystery(). if nothing matches,
 		then make a reverse compliment and try again
 	*/
-	var $kansas1=mystery(translation(chunkstring($transcription)));
-	var $kansas2=mystery(translation(chunkstring($transcription.slice(1))));
-	var $kansas3=mystery(translation(chunkstring($transcription.slice(2))));
+	var $kansas1=mystery(translation($transcription));
+	var $kansas2=mystery(translation($transcription.slice(1)));
+	var $kansas3=mystery(translation($transcription.slice(2)));
 	if (($kansas1=='no matches')&&($kansas2=='no matches')&&($kansas3=='no matches')) {
 		var $mirror=revcom($transcription);
-		var $kansas4=mystery(translation(chunkstring($mirror)));
-		var $kansas5=mystery(translation(chunkstring($mirror.slice(1))));
-		var $kansas6=mystery(translation(chunkstring($mirror.slice(2))));
+		var $kansas4=mystery(translation($mirror));
+		var $kansas5=mystery(translation($mirror.slice(1)));
+		var $kansas6=mystery(translation($mirror.slice(2)));
 		document.repeat.theRepeat1.value=$kansas4+" [includes r.c.]";
 		document.repeat.theRepeat2.value=$kansas5+" [includes r.c.]";
 		document.repeat.theRepeat3.value=$kansas6+" [includes r.c.]";
@@ -103,111 +93,25 @@ function readingframe($transcription) {
 function translation($beads) {
 	/*
 		merged two previous functions
-		now it takes $beasds, chops it into 3's
+		now it takes $beads, chops it into 3's
 		gets the aa through the codon_dict and returns
 		
 		it makes valid aa sequences that match through the 
 		script's protein button.
 	*/
-   codon_dict={"GCA":"A", "GCC":"A", "GCG":"A", "GCT":"A", "TGT":"C", "TGC":"C", "GAG":"E", "GAA":"E", "GAT":"D", "GAC":"D", "GGT":"G", "GGG":"G", "GGA":"G", "GGC":"G", "TTT":"F", "TTC":"F", "ATC":"I", "ATA":"I", "ATT":"I", "CAT":"H", "CAC":"H", "AAG":"K", "AAA":"K", "ATG":"M", "CTT":"L", "CTG":"L", "CTA":"L", "CTC":"L", "TTA":"L", "TTG":"L", "AAC":"N", "AAT":"N", "CAA":"Q", "CAG":"Q", "CCT":"P", "CCG":"P", "CCA":"P", "CCC":"P", "AGC":"S", "AGT":"S", "TCT":"S", "TCG":"S", "TCC":"S", "TCA":"S", "AGG":"R", "AGA":"R", "CGA":"R", "CGG":"R", "CGT":"R", "CGC":"R", "ACA":"T", "ACG":"T", "ACT":"T", "ACC":"T", "TGG":"W", "GTA":"V", "GTC":"V", "GTG":"V", "GTT":"V", "TAT":"Y", "TAC":"Y", "TAG":"Stop", "TAA":"Stop", "TGA":"Stop"};
+    codon_dict={"GCA":"A", "GCC":"A", "GCG":"A", "GCT":"A", "TGT":"C", "TGC":"C", "GAG":"E", "GAA":"E", "GAT":"D", "GAC":"D", "GGT":"G", "GGG":"G", "GGA":"G", "GGC":"G", "TTT":"F", "TTC":"F", "ATC":"I", "ATA":"I", "ATT":"I", "CAT":"H", "CAC":"H", "AAG":"K", "AAA":"K", "ATG":"M", "CTT":"L", "CTG":"L", "CTA":"L", "CTC":"L", "TTA":"L", "TTG":"L", "AAC":"N", "AAT":"N", "CAA":"Q", "CAG":"Q", "CCT":"P", "CCG":"P", "CCA":"P", "CCC":"P", "AGC":"S", "AGT":"S", "TCT":"S", "TCG":"S", "TCC":"S", "TCA":"S", "AGG":"R", "AGA":"R", "CGA":"R", "CGG":"R", "CGT":"R", "CGC":"R", "ACA":"T", "ACG":"T", "ACT":"T", "ACC":"T", "TGG":"W", "GTA":"V", "GTC":"V", "GTG":"V", "GTT":"V", "TAT":"Y", "TAC":"Y", "TAG":"Stop", "TAA":"Stop", "TGA":"Stop"};
 
 
-	var $plaintext=new String;
-  var $beads=$beads.match(/.{1,3}/g);
-	for ($c=0; $c<$beads.length; $c++) {
-		var $codon=codon_dict[$beads[$c]];
-		$plaintext=$plaintext.concat($codon);
-	}
-	return $plaintext;
+    var $plaintext=new String;
+    var $beads=$beads.match(/\w{3}/g);
+    for ($c=0; $c<$beads.length; $c++) {
+        var $codon=codon_dict[$beads[$c]];
+        $plaintext=$plaintext.concat($codon);
+    }
+    return $plaintext.toLowerCase();
 }
 
-function manifold($radiator) {
-	/*
-		holy crap, this is a job for a dictionary!
-	*/
-	var $aminoacid=new String;
-	
-	
-	/*
-	$vane=$radiator.slice(0,2);
-	// collects all the AA that code with the first two bp
-	if ($vane=='ac') {
-		$aminoacid='t';
-	} else if ($vane=='cg') {
-		$aminoacid='r';
-	} else if ($vane=='tc') {
-		$aminoacid='s';
-	} else if ($vane=='ct') {
-		$aminoacid='l';
-	} else if ($vane=='gt') {
-		$aminoacid='v';
-	} else if ($vane=='cc') {
-		$aminoacid='p';
-	} else if ($vane=='gc') {
-		$aminoacid='a';
-	} else if ($vane=='gg') {
-		$aminoacid='g';
-	} else if ($vane=='at') {
-		($radiator=='atg')? $aminoacid='m': $aminoacid='i';
-	} else {
-		// handles the ones that need 3 bp
-		$tail=$radiator.slice(2);
-		switch ($vane) {
-		case 'aa':
-			if (($tail=='a')||($tail=='g')) {
-				$aminoacid='k';
-			} else {
-				$aminoacid='n';
-			}
-			break;
-		case 'ca':
-			if (($tail=='a')||($tail=='g')) {
-				$aminoacid='q';
-			} else {
-				$aminoacid='h';
-			}
-			break;
-		case 'ga':
-			if (($tail=='a')||($tail=='g')) {
-				$aminoacid='e';
-			} else {
-				$aminoacid='d';
-			}
-			break;
-		case 'ta':
-			if (($tail=='t')||($tail=='c')) {
-				$aminoacid='y';
-			} else if (($tail=='a')||($tail=='g')) {
-				$aminoacid='.';
-			}
-			break;
-		case 'tg':
-			if (($tail=='t')||($tail=='c')) {
-				$aminoacid='c';
-			} else if ($tail=='g') {
-				$aminoacid='w';
-			} else {
-				$aminoacid='.';
-			}
-			break;
-		case 'tt':
-			if (($tail=='t')||($tail=='c')) {
-				$aminoacid='f';
-			} else {
-				$aminoacid='l';
-			}
-			break;
-		case 'ag':
-			if (($tail=='a')||($tail=='g')) {
-				$aminoacid='r';
-			} else {
-				$aminoacid='s';
-			}
-		}
-	}
-	*/
-	return $aminoacid;
-}
+
 
 /*
 ++++++++++++++++++++++++++++++++
