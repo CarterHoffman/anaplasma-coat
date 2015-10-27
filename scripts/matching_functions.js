@@ -28,7 +28,7 @@ function handleprotien() {
 
 function handledna() {
 	/*
-		converts basepair.value to lowercase, and
+		converts basepair.value to uppercase, and
 		replaces all the whitespace and non-word character.
 		sends to readingframe()		
 		
@@ -95,17 +95,13 @@ function translation($beads) {
 		merged two previous functions
 		now it takes $beads, chops it into 3's
 		gets the aa through the codon_dict and returns
-		
-		it makes valid aa sequences that match through the 
-		script's protein button.
 	*/
-    codon_dict={"GCA":"A", "GCC":"A", "GCG":"A", "GCT":"A", "TGT":"C", "TGC":"C", "GAG":"E", "GAA":"E", "GAT":"D", "GAC":"D", "GGT":"G", "GGG":"G", "GGA":"G", "GGC":"G", "TTT":"F", "TTC":"F", "ATC":"I", "ATA":"I", "ATT":"I", "CAT":"H", "CAC":"H", "AAG":"K", "AAA":"K", "ATG":"M", "CTT":"L", "CTG":"L", "CTA":"L", "CTC":"L", "TTA":"L", "TTG":"L", "AAC":"N", "AAT":"N", "CAA":"Q", "CAG":"Q", "CCT":"P", "CCG":"P", "CCA":"P", "CCC":"P", "AGC":"S", "AGT":"S", "TCT":"S", "TCG":"S", "TCC":"S", "TCA":"S", "AGG":"R", "AGA":"R", "CGA":"R", "CGG":"R", "CGT":"R", "CGC":"R", "ACA":"T", "ACG":"T", "ACT":"T", "ACC":"T", "TGG":"W", "GTA":"V", "GTC":"V", "GTG":"V", "GTT":"V", "TAT":"Y", "TAC":"Y", "TAG":"Stop", "TAA":"Stop", "TGA":"Stop"};
-
+    var $codon_dict={"GCA":"A", "GCC":"A", "GCG":"A", "GCT":"A", "TGT":"C", "TGC":"C", "GAG":"E", "GAA":"E", "GAT":"D", "GAC":"D", "GGT":"G", "GGG":"G", "GGA":"G", "GGC":"G", "TTT":"F", "TTC":"F", "ATC":"I", "ATA":"I", "ATT":"I", "CAT":"H", "CAC":"H", "AAG":"K", "AAA":"K", "ATG":"M", "CTT":"L", "CTG":"L", "CTA":"L", "CTC":"L", "TTA":"L", "TTG":"L", "AAC":"N", "AAT":"N", "CAA":"Q", "CAG":"Q", "CCT":"P", "CCG":"P", "CCA":"P", "CCC":"P", "AGC":"S", "AGT":"S", "TCT":"S", "TCG":"S", "TCC":"S", "TCA":"S", "AGG":"R", "AGA":"R", "CGA":"R", "CGG":"R", "CGT":"R", "CGC":"R", "ACA":"T", "ACG":"T", "ACT":"T", "ACC":"T", "TGG":"W", "GTA":"V", "GTC":"V", "GTG":"V", "GTT":"V", "TAT":"Y", "TAC":"Y", "TAG":"Stop", "TAA":"Stop", "TGA":"Stop"};
 
     var $plaintext=new String;
-    var $beads=$beads.match(/\w{3}/g);
+    var $beads=$beads.toUpperCase().match(/.{1,3}/g);
     for ($c=0; $c<$beads.length; $c++) {
-        var $codon=codon_dict[$beads[$c]];
+        var $codon=$codon_dict[$beads[$c]];
         $plaintext=$plaintext.concat($codon);
     }
     return $plaintext.toLowerCase();
