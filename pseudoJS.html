@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>pseudogene matching for msp2</title>
+<link rel="stylesheet" type="text/css" href="styles/msp2style.css" media="screen" />
+<script src="scripts/match.js"></script>
+</head>
+<body>
+<div id='contain'>
+
+<form name="repeat">
+<ul>
+<li><h1>MSP2 &#966;genes</h1><p class='vrs'>v1.1</p></li>
+<li><textarea cols='80' rows='4' name='aminoacids'></textarea></li>
+<li><input type='text' name='handle' size='20'> which tick?</li>
+<li><input type="button" value="what pseudogenes?" onClick="mystery()"><input type="button" value="clear the boxes" onClick="erase()"></li>
+
+</ul>
+</form>
+<p class='note'>Internet Explorer might alert you that it is restricting acitve content on this page.  For this script to work, you need to select the 'allow blocked content' option after clicking on the alert bar.</p>
+<p>Copy and paste your amino acid sequence in the upper box.  It doesn't matter if the sequence is upper or lower case, or mixed case.  The script will find and remove dashes in the seqeunce before comparing it to the pseudogenes, but it won't deal with any other characters, like white space.</p>
+
+<ul>
+<li><a href='aboutpseudo.html'>about this script</a></li>
+<li><a href='index.html'>main page</a></li>
+</ul>
+</div>
+</body>
+</html>

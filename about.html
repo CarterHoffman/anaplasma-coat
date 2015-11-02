@@ -1,0 +1,28 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>about</title>
+<link rel="stylesheet" type="text/css" href="styles/kansaspstyle.css" media="print" />
+<link rel="stylesheet" type="text/css" href="styles/aboutstyle.css" media="screen" />
+
+</head>
+<body>
+<div id='contain'>
+
+<ul>
+<li><a href='kansMatchJs.html'>back to the matching script</a></li>
+<li><a href='index.html'>main page</a></li>
+</ul>
+<h2>What this script does</h2>
+
+<p>This script will take DNA or protein sequence and find the repeated motifs of MSP1a in the order that they occur in the string.  If searching DNA, the script translates all three reading frames to amino acids and searches for repeats.  If no match is found, it constructs the reverse complement and repeats the search in all three reading frames.  At the moment, this script won't alert you if two motifs are separated by junk sequences.  I'm working on that.</p>
+
+<h2>Brute force and Knuth-Morris-Pratt</h2>
+<p>I only learned enough about pattern matching to get this script to work.  I transposed the script from <a href='http://www-igm.univ-mlv.fr/~lecroq/string/node8.html'>this C code</a>, and a good explanation of the algorithm is <a href='http://en.wikipedia.org/wiki/Knuth-Morris-Pratt_algorithm'>found here</a>.</p>
+<p>Say you have two sequences A and B.  The sequence of A is '123456', and B is '123987'.  If you were comparing B to A, you could take the first number from each and compare.  They match, so far so good.  Comparing the second numbers of each sequence also match, and the third as well.  The fourth numbers don't match, and you stop.  Now suppose A is a lot longer than B, say A starts with '123456...' and then goes on for 1000 more digits.  You could slide B under A as you compare them, continuing along the whole length A until you reach the end.  If you were to move B under A stepwise, one space at a time while comparing until you've travelled the length of A, then you've compared B to A by brute-force.</p>
+<p>Normally, you wouldn't compare things in such a rigorous manner because it would take such a long time.  You can see that the first three numbers of both sequences match, so to avoid unnecessary work you would slide B three places over and start comparing B to A at that point.  That's the basis of the Knuth-Morris-Pratt algorithm, except they were able to define it in a way that a mindless computer could perform comparisons between massively long, multiple strings of characters in a much shorter time.</p>
+
+
+</div>
+</body>
+</html>
