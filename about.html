@@ -19,8 +19,21 @@
 
 <h2>Brute force and Knuth-Morris-Pratt</h2>
 <p>I only learned enough about pattern matching to get this script to work.  I transposed the script from <a href='http://www-igm.univ-mlv.fr/~lecroq/string/node8.html'>this C code</a>, and a good explanation of the algorithm is <a href='http://en.wikipedia.org/wiki/Knuth-Morris-Pratt_algorithm'>found here</a>.</p>
-<p>Say you have two sequences A and B.  The sequence of A is '123456', and B is '123987'.  If you were comparing B to A, you could take the first number from each and compare.  They match, so far so good.  Comparing the second numbers of each sequence also match, and the third as well.  The fourth numbers don't match, and you stop.  Now suppose A is a lot longer than B, say A starts with '123456...' and then goes on for 1000 more digits.  You could slide B under A as you compare them, continuing along the whole length A until you reach the end.  If you were to move B under A stepwise, one space at a time while comparing until you've travelled the length of A, then you've compared B to A by brute-force.</p>
-<p>Normally, you wouldn't compare things in such a rigorous manner because it would take such a long time.  You can see that the first three numbers of both sequences match, so to avoid unnecessary work you would slide B three places over and start comparing B to A at that point.  That's the basis of the Knuth-Morris-Pratt algorithm, except they were able to define it in a way that a mindless computer could perform comparisons between massively long, multiple strings of characters in a much shorter time.</p>
+<p>The KMP algorithm is a faster way to search a string for a pattern than using brute force. It's tricky, and while I was able to learn enough to use it in this script, I don't completely understand how it works. The effect is that when a partial match is made between a pattern and a longer string, the points of comparison aren't completly reset.<p>
+</p>With brute-force, the pattern is pushed along the string one character at a time. If there's a mismatch then you start all the way at the beginning of the pattern string and move to the next character in the search string. So with this example it takes three steps to find a match with brute-force.</p>
+
+<pre>
+1010100111001   1010100111001   1010100111001
+||||x            x                ||||||||
+10100111        -10100111       --10100111
+</pre>
+<p>With the KMP, you can skip ahead a few spaces if there's a partial match, based on a lookup table created by comparing the pattern to itself. That's the confusing part. In the same example, it only takes two steps to find a match</p>
+<pre>
+1010100111001   1010100111001
+||||x             ||||||||
+10100111        --10100111
+</pre>
+
 
 
 </div>
