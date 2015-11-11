@@ -165,6 +165,19 @@ function downtown($whoop) {
 	kansas repeat to the nextTable function.
 	If all the letters in the k.r. match the sequence, 
 	it returns aouga array, through honker function, to the mystery function
+	
+    some repeats are exactly the same as others, just shorter
+    need to fix these mistakes with the new repeats
+        
+    short   long    diff how?
+    ----------------------------
+    10      11      10+'vg'
+    15      94      15+'vg'
+    98      65      98+'g'      
+    E       D       E+'g'
+    O       K       'adgs'+O
+    O       B       'adss'+O
+    O       T       'agss'+O 
 */
 function matchKMP($findthisStr, $inthisStr, $ident, $seqorstrain) {
 	//	convert the k.r. to an array
