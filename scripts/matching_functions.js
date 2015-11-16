@@ -5,7 +5,7 @@
 ++++++++++++++++++++++++++++++++
 */
 
-var $isprotien='no';
+var $isprotien=Boolean(false);
 var $beware="none";
 var $final='';
 var $aouga=new Array();
@@ -21,9 +21,9 @@ function handleprotein() {
 		variable determine what to do with the seqeunce? why is 'protien' misspelled?
 	*/
 	var $inquestion=document.repeat.basepair.value.toLowerCase().replace(/\s/g, '').replace(/\W/g, '');
-	$isprotien='yes';
+	$isprotien=Boolean(true);
 	look_for_repeats($inquestion);
-	$isprotien='no';
+	$isprotien=Boolean(false);
 }
 
 function handledna() {
@@ -73,8 +73,8 @@ function readingframe($transcription) {
 		then make a reverse compliment and try again
 	*/
 	var $kansas1=look_for_repeats(translation($transcription));
-	var $kansas2=mystery(translation($transcription.slice(1)));
-	var $kansas3=mystery(translation($transcription.slice(2)));
+	var $kansas2=look_for_repeats(translation($transcription.slice(1)));
+	var $kansas3=look_for_repeats(translation($transcription.slice(2)));
 	if (($kansas1=='no matches')&&($kansas2=='no matches')&&($kansas3=='no matches')) {
 		var $mirror=revcom($transcription);
 		var $kansas4=mystery(translation($mirror));
@@ -478,7 +478,7 @@ function look_for_repeats($haystack) {
             if yes, look for a strain match
     */    
     var $final=assemble_matches($haystack);
-alert($final);
+//alert($final);
     // not sure how to do this by searching arrays
     // not gonna care right now
     var $braid=new Array();
@@ -489,7 +489,7 @@ alert($final);
             $braid.push('0');
         }
     }
-alert($braid);
+//alert($braid);
     //  match 0 or more '0' followed by 1 or more '1' followed by 0 or more '0'
     if ($braid.join('').search('^0*1+0*$')>-1) { 
         var $done=new Array();
@@ -499,9 +499,9 @@ alert($braid);
             }
         }
 
-        document.repeat.theRepeat4.value='returns '+$final+' look for '+$done.join('');
+        document.repeat.theRepeat4.value='returns '+$final.join(', ')+', look for '+$done.join(' ');
     } else { 
-        alert('not gonna match a strain');
+        document.repeat.theRepeat4.value='returns '+$final.join(', ')+', but not gonna match a strain';
     }
 
 }
