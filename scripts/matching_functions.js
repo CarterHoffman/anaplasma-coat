@@ -5,21 +5,16 @@
 ++++++++++++++++++++++++++++++++
 */
 
-<<<<<<< HEAD
-var $isprotien='no';
-=======
+
 var $isprotien=Boolean(false);
->>>>>>> new-guts
 var $beware="none";
 var $final='';
 var $aouga=new Array();
 
 
-<<<<<<< HEAD
-function handleprotien() {
-=======
+
 function handleprotein() {
->>>>>>> new-guts
+
 	/*
 		converts basepair.value to lowercase, and
 		replaces all the whitespace and non-word character.
@@ -29,11 +24,7 @@ function handleprotein() {
 		variable determine what to do with the seqeunce? why is 'protien' misspelled?
 	*/
 	var $inquestion=document.repeat.basepair.value.toLowerCase().replace(/\s/g, '').replace(/\W/g, '');
-<<<<<<< HEAD
-	$isprotien='yes';
-	mystery($inquestion);
-	$isprotien='no';
-=======
+
 	$isprotien=Boolean(true);
 	var $found=look_for_repeats($inquestion);
 	if ($found[0]) {
@@ -42,7 +33,7 @@ function handleprotein() {
 	    document.repeat.theRepeat4.value=$found[1];
 	}
 	$isprotien=Boolean(false);
->>>>>>> new-guts
+
 }
 
 function handledna() {
@@ -91,17 +82,12 @@ function readingframe($transcription) {
 		to translation(), then to mystery(). if nothing matches,
 		then make a reverse compliment and try again
 	*/
-<<<<<<< HEAD
-	var $kansas1=mystery(translation($transcription));
-	var $kansas2=mystery(translation($transcription.slice(1)));
-	var $kansas3=mystery(translation($transcription.slice(2)));
-	if (($kansas1=='no matches')&&($kansas2=='no matches')&&($kansas3=='no matches')) {
-=======
+
 	var $kansas1=look_for_repeats(translation($transcription));
 	var $kansas2=look_for_repeats(translation($transcription.slice(1)));
 	var $kansas3=look_for_repeats(translation($transcription.slice(2)));
 	if ((!$kansas1[0])&&(!$kansas2[0])&&(!$kansas3[0])) {
->>>>>>> new-guts
+
 		var $mirror=revcom($transcription);
 		var $kansas4=mystery(translation($mirror));
 		var $kansas5=mystery(translation($mirror.slice(1)));
@@ -110,15 +96,11 @@ function readingframe($transcription) {
 		document.repeat.theRepeat2.value=$kansas5+" [includes r.c.]";
 		document.repeat.theRepeat3.value=$kansas6+" [includes r.c.]";
 	} else {
-<<<<<<< HEAD
-		document.repeat.theRepeat1.value=$kansas1;
-		document.repeat.theRepeat2.value=$kansas2;
-		document.repeat.theRepeat3.value=$kansas3;
-=======
+
 		document.repeat.theRepeat1.value=$kansas1[1];
 		document.repeat.theRepeat2.value=$kansas2[1];
 		document.repeat.theRepeat3.value=$kansas3[1];
->>>>>>> new-guts
+
 	}
 }
 
