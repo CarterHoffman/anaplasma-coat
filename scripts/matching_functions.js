@@ -22,7 +22,12 @@ function handleprotein() {
 	*/
 	var $inquestion=document.repeat.basepair.value.toLowerCase().replace(/\s/g, '').replace(/\W/g, '');
 	$isprotien=Boolean(true);
-	look_for_repeats($inquestion);
+	var $found=look_for_repeats($inquestion);
+	if ($found[0]) {
+	    document.repeat.theRepeat4.value=$found[1];
+	} else {
+	    document.repeat.theRepeat4.value=$found[1];
+	}
 	$isprotien=Boolean(false);
 }
 
@@ -75,7 +80,7 @@ function readingframe($transcription) {
 	var $kansas1=look_for_repeats(translation($transcription));
 	var $kansas2=look_for_repeats(translation($transcription.slice(1)));
 	var $kansas3=look_for_repeats(translation($transcription.slice(2)));
-	if (($kansas1=='no matches')&&($kansas2=='no matches')&&($kansas3=='no matches')) {
+	if ((!$kansas1[0])&&(!$kansas2[0])&&(!$kansas3[0])) {
 		var $mirror=revcom($transcription);
 		var $kansas4=mystery(translation($mirror));
 		var $kansas5=mystery(translation($mirror.slice(1)));
@@ -84,9 +89,9 @@ function readingframe($transcription) {
 		document.repeat.theRepeat2.value=$kansas5+" [includes r.c.]";
 		document.repeat.theRepeat3.value=$kansas6+" [includes r.c.]";
 	} else {
-		document.repeat.theRepeat1.value=$kansas1;
-		document.repeat.theRepeat2.value=$kansas2;
-		document.repeat.theRepeat3.value=$kansas3;
+		document.repeat.theRepeat1.value=$kansas1[1];
+		document.repeat.theRepeat2.value=$kansas2[1];
+		document.repeat.theRepeat3.value=$kansas3[1];
 	}
 }
 
@@ -398,6 +403,7 @@ function bedtok($dupe, $prefix, $suffix) {
 
 // done
 function assemble_matches($haystack) { 
+
     /*
         1) looks for matches with kmp_search(), returns span in haystack 
             where repeat match starts & ends.
@@ -409,10 +415,14 @@ function assemble_matches($haystack) {
             if not, just string together the repeat letters
     */
     var $first_round=new Array();
+
     for (var $k in $repeat_dict) { 
         kmp_search($k, $haystack, 0, $first_round);
     }
 
+    if ($first_round.length==0) {
+        return $haystack;      
+    } else {
     // merge() is now overlap(), because the name was already taken by javascript    
     var $pre_second=new Array();
     for (var $o in $first_round) {
@@ -464,7 +474,9 @@ function assemble_matches($haystack) {
             }
         }     
     }
+
     return $final
+    }
 
 }
 
@@ -478,7 +490,7 @@ function look_for_repeats($haystack) {
             if yes, look for a strain match
     */    
     var $final=assemble_matches($haystack);
-//alert($final);
+
     // not sure how to do this by searching arrays
     // not gonna care right now
     var $braid=new Array();
@@ -489,19 +501,36 @@ function look_for_repeats($haystack) {
             $braid.push('0');
         }
     }
-//alert($braid);
+
     //  match 0 or more '0' followed by 1 or more '1' followed by 0 or more '0'
-    if ($braid.join('').search('^0*1+0*$')>-1) { 
+
+    if ($braid.join('').search('^0+$')>-1) {
+      
+        var $results=Array(Boolean(false), 'returns '+$final+'\n-is not a known strain');
+     
+    } else if ($braid.join('').search('^0*1+0*$')>-1) { 
+     
         var $done=new Array();
         for (var $f in $final) {
             if ($final[$f]==$final[$f].toUpperCase()) {
                 $done.push($final[$f]);
             }
         }
+        var $thestrain=$strain_dict[$done.join(' ')];
 
-        document.repeat.theRepeat4.value='returns '+$final.join(', ')+', look for '+$done.join(' ');
+        if ($thestrain) {
+            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',\n found strain '+$thestrain);
+            //document.repeat.theRepeat4.value='returns '+$final.join(', ')+',\n found strain '+$thestrain;
+        } else {
+            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',\n-but doesn\'t match a strain');
+            //document.repeat.theRepeat4.value='returns '+$final.join(', ')+',\nbut doesn\'t match a strain';
+        }
+
     } else { 
-        document.repeat.theRepeat4.value='returns '+$final.join(', ')+', but not gonna match a strain';
+
+        var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',\n-but doesn\'t match a strain');
+        //document.repeat.theRepeat4.value='returns '+$final.join(', ')+',\nbut doesn\'t match a strain';
     }
 
+return $results;
 }
