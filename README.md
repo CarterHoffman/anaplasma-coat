@@ -22,4 +22,3 @@
 10100111        --10100111
 </pre>
 
-This is a script to match sequences of MSP1a to known strains. 
