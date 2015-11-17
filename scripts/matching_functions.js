@@ -5,13 +5,16 @@
 ++++++++++++++++++++++++++++++++
 */
 
-var $isprotien='no';
+
+var $isprotien=Boolean(false);
 var $beware="none";
 var $final='';
 var $aouga=new Array();
 
 
-function handleprotien() {
+
+function handleprotein() {
+
 	/*
 		converts basepair.value to lowercase, and
 		replaces all the whitespace and non-word character.
@@ -21,9 +24,16 @@ function handleprotien() {
 		variable determine what to do with the seqeunce? why is 'protien' misspelled?
 	*/
 	var $inquestion=document.repeat.basepair.value.toLowerCase().replace(/\s/g, '').replace(/\W/g, '');
-	$isprotien='yes';
-	mystery($inquestion);
-	$isprotien='no';
+
+	$isprotien=Boolean(true);
+	var $found=look_for_repeats($inquestion);
+	if ($found[0]) {
+	    document.repeat.theRepeat4.value=$found[1];
+	} else {
+	    document.repeat.theRepeat4.value=$found[1];
+	}
+	$isprotien=Boolean(false);
+
 }
 
 function handledna() {
@@ -72,10 +82,12 @@ function readingframe($transcription) {
 		to translation(), then to mystery(). if nothing matches,
 		then make a reverse compliment and try again
 	*/
-	var $kansas1=mystery(translation($transcription));
-	var $kansas2=mystery(translation($transcription.slice(1)));
-	var $kansas3=mystery(translation($transcription.slice(2)));
-	if (($kansas1=='no matches')&&($kansas2=='no matches')&&($kansas3=='no matches')) {
+
+	var $kansas1=look_for_repeats(translation($transcription));
+	var $kansas2=look_for_repeats(translation($transcription.slice(1)));
+	var $kansas3=look_for_repeats(translation($transcription.slice(2)));
+	if ((!$kansas1[0])&&(!$kansas2[0])&&(!$kansas3[0])) {
+
 		var $mirror=revcom($transcription);
 		var $kansas4=mystery(translation($mirror));
 		var $kansas5=mystery(translation($mirror.slice(1)));
@@ -84,9 +96,11 @@ function readingframe($transcription) {
 		document.repeat.theRepeat2.value=$kansas5+" [includes r.c.]";
 		document.repeat.theRepeat3.value=$kansas6+" [includes r.c.]";
 	} else {
-		document.repeat.theRepeat1.value=$kansas1;
-		document.repeat.theRepeat2.value=$kansas2;
-		document.repeat.theRepeat3.value=$kansas3;
+
+		document.repeat.theRepeat1.value=$kansas1[1];
+		document.repeat.theRepeat2.value=$kansas2[1];
+		document.repeat.theRepeat3.value=$kansas3[1];
+
 	}
 }
 
@@ -159,197 +173,374 @@ function downtown($whoop) {
 	$substitute[1]='Italy 7';
 
 
-/*
-	this function is the first part of the 
-	Knuth-Morris-Pratt algorithm.  It sends the	
-	kansas repeat to the nextTable function.
-	If all the letters in the k.r. match the sequence, 
-	it returns aouga array, through honker function, to the mystery function
-	
-    some repeats are exactly the same as others, just shorter
-    need to fix these mistakes with the new repeats
+// done, 'merge' is already used by javascript
+function overlap($data_range) { 
+    /*
+        got this off stackoverflow, it's dope
         
-    short   long    diff how?
-    ----------------------------
-    10      11      10+'vg'
-    15      94      15+'vg'
-    98      65      98+'g'      
-    E       D       E+'g'
-    O       K       'adgs'+O
-    O       B       'adss'+O
-    O       T       'agss'+O 
-*/
-function matchKMP($findthisStr, $inthisStr, $ident, $seqorstrain) {
-	//	convert the k.r. to an array
-	var $findthis=$findthisStr.split('');
-	var $step=nextTable($findthis);
-	var $inthis=$inthisStr.split('');
-	var $i=0;
-	var $j=0;
-	while ($j<$inthis.length) {
-		while (($i>-1)&&($findthis[$i]!=$inthis[$j])) {
-			$i=$step[$i];
-		}
-		$i++;
-		$j++;
-		if ($seqorstrain=='seq') {
-			if ($i>=$findthis.length) {
-				// some k.r. differ only by length, need to weed those apart
-				switch ($ident) {
-					//	E and D
-					case 'E':
-					//	if the next letter isn't g then okay
-					if ($inthis[$j]!='g') {
-						$found=$j-$i;
-						$ls=$findthis.length;
-						$i=$step[$i];
-						honker($ident, $found);
-					}
-					break;
-					//  O and B
-					case 'O':
-					var $pj=$j;
-					$pj=$pj-26;
-					$isbigo=$pj-21;
-					$isbigb=$pj-26;
-					//	I think I fixed the starting O problem
-					if (($inthis[$pj]=='g')||($inthis[$pj]==null)) {
-						$found=$j-$i;
-						$ls=$findthis.length;
-						$i=$step[$i];
-						honker($ident, $found);
-					}
-					break;
-					default:
-					$found=$j-$i;
-					$ls=$findthis.length;
-					$i=$step[$i];
-					honker($ident, $found);
-				}
-			}
-		} else {
-			if (($i>=$findthis.length)&&($findthisStr.length==$inthisStr.length)) {
-					$found=$j-$i;
-					$ls=$findthis.length;
-					$i=$step[$i];
-					honker($ident, $found);
-			}
-		}
-	}
+        given list of tuple match ranges, [(a,b),(c,d),(e,f),...]
+        first sort the list to make sure a<c<e because the tuples
+        will be concated from several repeat match results, but the spans
+        will already be ordered from low to high
+        the three possibilities are { 
+        a < b < c < d   a---------b
+                                     c---d
+                                     
+        a < c <= b < d  a------------b
+                                c-------d
+                                
+        a < (c<d) <= b  a--------------b
+                            c---d
+
+        [(0, 28), (28, 56), (84, 112)] as example
+    */
+
+    $data_range.sort(function(a,b) {
+        return a[0]-b[0];
+    });
+
+    var $merged_data=new Array();
+    var $saved = $data_range[0];    
+
+    for ($dr in $data_range) {
+        if ($data_range[$dr][0]<=$saved[1]) {      
+            $saved[1]=Math.max($saved[1], $data_range[$dr][1])
+        } else {
+            $merged_data.push([$saved[0], $saved[1]])
+            $saved[0]=$data_range[$dr][0]
+            $saved[1]=$data_range[$dr][1]
+        }         
+    }    
+    $merged_data.push($saved)
+    return $merged_data
+}
+
+// done
+function known_unknowns($spans, $seq_length) { 
+    /*
+        take the list of tuples in spans, create new tuples
+        that cover the repeats in sequence that are unknown
+        
+        check if there's a tuple starting at 0,
+        check if the end tuple is as long as the sequence,
+        fill in the missing tuples
+        
+        and then if you want just the gaps, leave wholething=False
+    */ 
+    var $donewith=[];
+    //  does the list start with 0?
+    var $smallest=$spans[0][0];
+    for (var $n in $spans) {
+        if (Math.min.apply(null, $spans[$n])<$smallest) {
+            $smallest=Math.min.apply(null, $spans[$n]);
+        }
+    }
+    if ($smallest!=0) { 
+        var $pre_done=new Array();
+        $pre_small=['?', [0, $smallest]];
+        $donewith.unshift($pre_small);
+    }
+        
+    //  is the largest number equal to the sequence length?
+    var $largest=$spans[0][0];
+    for (var $n in $spans) {
+        if (Math.max.apply(null, $spans[$n])>$largest) {
+            $largest=Math.max.apply(null, $spans[$n]);
+        }
+    }
+    if ($largest<$seq_length) { 
+        var $pre_big=new Array();
+        $pre_big=['?', [$largest, $seq_length]];  
+
+        $donewith.push($pre_big);
+    }
+        
+    $spans.sort(function(a,b) {
+        return a[0]-b[0]
+    });
+    for (var $s in $spans) {
+        var $t=$s;
+        $t++;
+        if ($t<=$spans.length-1) {
+            if ($spans[$s][1]!=$spans[$t][0]) {
+                var $pre_wit=new Array();
+                $pre_wit=['?', [$spans[$s][1], $spans[$t][0] ] ]
+                $donewith.push($pre_wit);
+            }
+        }
+    }
+    
+    // need to return this as sorted
+    return $donewith;
+}
+ 
+// done   
+function initnext($needle) { 
+    /*
+        generates the next table for patterns used in kmp_search
+    */
+    var $next=new Array();
+    var $j=-1;
+    var $i=0;
+    $next[0]=-1;
+    while ($i<$needle.length-1) { 
+        if (($j==-1) || ($needle[$i]==$needle[$j])) {
+            $j+=1;
+            $i+=1;
+            if ($needle[$i]!=$needle[$j]) { 
+                $next[$i]=$j;
+            } else { 
+                $next[$i]=$next[$j];
+            }
+        } else {
+            $j=$next[$j];
+        }
+    }
+    return $next
+}
+ 
+// done  
+function kmp_search($needle, $haystack, $start, $matches) { 
+    /*
+        searches haystack for matches to $needle
+        
+        added a check for false positives with the
+        bedtok() function. if that returns true then the
+        match is appended to 'matches' list
+    */
+    $j=0;
+    $i=$start;
+    $next_table=initnext($needle);
+    while ($j<$needle.length && $i<=$haystack.length-1) {   
+        if ($j==-1 || $haystack[$i]==$needle[$j]) { 
+            $j+=1;
+            $i+=1;         
+        } else {             
+            $j=$next_table[$j];
+        }
+    } 
+
+    var $troublemakers={
+        "adsssasgqqqessvlspsgqastssqlg" : "10",
+        "adsssasgqqqesgvlsqsgqastssqlg" : "15",
+        "adsssasgqqqessvlsqseastssqlg" : "98",
+        "adsssasgqqqessvssqseastssqlg" : "E",
+        "saggqqqessvssqsdqastssqlg" : "O"
+    }
+    var $suspect=Boolean(false);
+    if ($troublemakers[$needle]) { 
+        $leading=$haystack.slice(($i-$j)-4, $i-$j);
+        $trailing=$haystack.slice($i, $i+2);
+        if (!$leading) { 
+            $leading=Boolean(false);
+        }
+        if (!$trailing) { 
+            $trailing=Boolean(false);
+        }
+
+        $suspect=bedtok($needle, $leading, $trailing);
+    }
+
+    if ($j>=$needle.length-1 && $i+$needle.length<=$haystack.length) {  
+        //  matches found before the end of $haystack string          
+        if (!$suspect) {             
+            // matches.append([$needle,$i-$j])  
+            $new_match=new Array()
+            $new_match=[$repeat_dict[$needle], [($i-$j), $i]]
+
+            $matches.push($new_match);
+        }
+        kmp_search($needle,$haystack, ($i-$needle.length+1), $matches); 
+                     
+    } else { 
+        //  matches found at the end of $haystack string
+
+        if ($j>$needle.length-1) { 
+            if (!$suspect) {           
+                // matches.append([$needle,$i-$j])
+                $new_match=new Array()
+                $new_match=[$repeat_dict[$needle], [($i-$j), $i]]
+                $matches.push($new_match); 
+            }
+        }  
+    }
+    return $matches; 
+} 
+
+// done      
+function bedtok($dupe, $prefix, $suffix) { 
+    /*
+        checks for those repeats that will cause false positives
+        some repeats are exactly the same as 
+        others, just shorter
+        
+        short   long    diff how?
+        ----------------------------
+        10      11      10+'vg'
+        15      94      15+'vg'
+        98      65      98+'g'      
+        E       D       E+'g'
+        O       K       'adgs'+O
+        O       B       'adss'+O
+        O       T       'agss'+O 
+        
+        checks prefix and suffix of dupe. 
+        if false positive found, then the function returns False 
+    */
+    
+    var $pre_pass=Boolean(true);
+    var $suf_pass=Boolean(true);
+        
+    if ($prefix && ($prefix=='adgs' || ($prefix=='adss' || $prefix=='agss'))) { 
+        // print 'k, b, or t'
+        $pre_pass=Boolean(false);
+    }  
+
+    if ($suffix && ($suffix=='vg' || $suffix.slice(0,1)=='g')) { 
+        // print '11,94,65,D'
+        $suf_pass=Boolean(false);
+    }
+   //  print pre_pass, suf_pass            
+    if ($pre_pass && $suf_pass) { 
+        // print "that's a real {0}".format(troublemakers.get(dupe))
+        return Boolean(false);
+    } else { 
+        // print 'something else'
+        return Boolean(true);
+    }
+}
+
+// done
+function assemble_matches($haystack) { 
+
+    /*
+        1) looks for matches with kmp_search(), returns span in haystack 
+            where repeat match starts & ends.
+        2) Then merges sequential repeats.  
+        3) Fills in gaps along haystack length at the start, middle, end 
+            where matches are not covered, and appends those results 
+            from known_unknowns() to first_round.
+        4) looks for '?' in results. if yes, display all characters in the haystack slice
+            if not, just string together the repeat letters
+    */
+    var $first_round=new Array();
+
+    for (var $k in $repeat_dict) { 
+        kmp_search($k, $haystack, 0, $first_round);
+    }
+
+    if ($first_round.length==0) {
+        return $haystack;      
+    } else {
+    // merge() is now overlap(), because the name was already taken by javascript    
+    var $pre_second=new Array();
+    for (var $o in $first_round) {
+        // use slice to make a shallow copy.
+        // things performed on $pre_second were affecting $first_round
+        $pre_second.push($first_round[$o][1].slice(0,2));
+    }
+
+    $second_round=overlap($pre_second);
+   
+    var $mysteries=known_unknowns($second_round, $haystack.length);
+    
+    //  appends those results from known_unknowns() to first_round
+    for (var $m in $mysteries) { 
+        $first_round.push($mysteries[$m]);
+    }
+
+ 
+    //  sorts to new list 
+    $first_round.sort(function(a,b) {
+        return a[1][0]-b[1][0];
+    });
+
+    /*
+       I'm doing it this way because some(), reduce()
+       every(), and filter() aren't supported by IE<9
+       and this script was supposed to be used on whatever
+       browser you had. Hope I didn't miss other methods
+       that aren't supported by at least IE5.5
+    */
+    var $allknown=Boolean(true);
+    for ($r in $first_round) {
+        if ($first_round[$r][0]=='?') {
+            $allknown=Boolean(false);
+        }
+    }
+    
+    var $final=new Array();
+    if ($allknown) { 
+        for ($r in $first_round) {
+            $final.push($first_round[$r][0])
+        }
+    } else { 
+        for ($r in $first_round) {
+            if ($first_round[$r][0]=='?') { 
+                $final.push($haystack.slice($first_round[$r][1][0], $first_round[$r][1][1]).toLowerCase())   
+            } else { 
+                $final.push($first_round[$r][0]);
+            }
+        }     
+    }
+
+    return $final
+    }
 
 }
 
-/*
-	this is the second half of the KMP algorithm
-	which figures how far back to set the k.r. 
-	when it encounters a mismatch.  It's different
-	for every repeat
-*/
-function nextTable($x) {
-var $p=0;
-var $q=-1;
-var $next=new Array();
-$next[0]=-1;
-while ($p<$x.length) {
-	while (($q>-1)&&($x[$p]!=$x[$q])) {
-		$q=$next[$q];
-	}
-	$p++;
-	$q++;
-	if ($x[$p]==$x[$q]) {
-		$next[$p]=$next[$q];
-	} else {
-		$next[$p]=$q;
-	}
-}
-return $next;
-}
+// done
+function look_for_repeats($haystack) {     
+    /*
+        1) assemble repeat matches in haystack with assemble_matches()
+        2) make a new string from final that can be matched for 
+            continuous repeat letters. don't know an easier way to do that
+        3) match 0 or more '0' followed by 1 or more '1' followed by 0 or more '0'
+            if yes, look for a strain match
+    */    
+    var $final=assemble_matches($haystack);
 
-/*
-	this creates an array of the
-	results using the position found
-	in the sequence as the array
-	key.  That way the repeat letters
-	are displayed in the order they're found
-	in the seqeunce, not in the order of
-	the $repeats array.
-*/
-function honker($letter, $place) {
-	$aouga[$place]=$letter;
-}
+    // not sure how to do this by searching arrays
+    // not gonna care right now
+    var $braid=new Array();
+    for (var $f in $final) { 
+        if ($final[$f]==$final[$f].toUpperCase()) { 
+            $braid.push('1');   
+        } else { 
+            $braid.push('0');
+        }
+    }
 
-function mystery($seq) {
-	/*
-		finds the strain name associated with the msp1a repeats
-	*/
-	//	convert aa sequence to lower case
-	// var $seqRaw=document.repeat.aminoacids.value;
-	// var $seq=$seqRaw.toLowerCase();
-	var $ratchet=0;
-	//	match aa to repeat name
-	while ($ratchet<$repeats.length) {
-		//	typeof solves the problem with $ratchet array numbers that aren't there
-		if (typeof $repeats[$ratchet]!='undefined') {
-			matchKMP($repeats[$ratchet][1], $seq, $repeats[$ratchet][0], 'seq');
-			$ratchet++;
-		} else {
-			$ratchet++;
-		}
-	}
+    //  match 0 or more '0' followed by 1 or more '1' followed by 0 or more '0'
 
-	if ($aouga.length>0) {
-		$windup=$aouga.join('');		
-		//	convert aouga to string with no intervening chars, split again, join up with spaces inbetween
-		$winded=($windup.split('')).join(' ');
-		$aouga=new Array();
-		//	do the match round again for strain names
-		var $cog=0;
-		while ($cog<$strain.length) {
-			// same problem as 558
-			if (typeof $strain[$cog]!='undefined') {
-				matchKMP($strain[$cog][1], $windup, $strain[$cog][0], 'strain');
-				$cog++;
-			} else {
-				$cog++;
-			}
-		}
-		if ($aouga.length>0) {
-			$pitch=$aouga.join('');
-			$aouga=new Array();
+    if ($braid.join('').search('^0+$')>-1) {
+      
+        var $results=Array(Boolean(false), 'returns '+$final+'\n-is not a known strain');
+     
+    } else if ($braid.join('').search('^0*1+0*$')>-1) { 
+     
+        var $done=new Array();
+        for (var $f in $final) {
+            if ($final[$f]==$final[$f].toUpperCase()) {
+                $done.push($final[$f]);
+            }
+        }
+        var $thestrain=$strain_dict[$done.join(' ')];
 
-			if ($isprotien=='yes'){
-				document.repeat.theRepeat4.value=$windup+" ("+$pitch+")";
-			} else {
-				return $windup+" ("+$pitch+")";
-			}
-		} else {
-			// s is the same as k, but sbmfw doesn't show as bison, or sch as wetumka
-			// 7/16/7 may be able to delete this part, since update on line 558
-			switch ($windup) {
-				case "KBMFW":
-					$windup=$strain[39][1]+" ("+$strain[39][0]+")";
-					return $windup;
-					break;
-				case "KCH":
-					$windup=$strain[4][1]+" ("+$strain[4][0]+")";
-					return $windup;
-					break;
-			}
-			if ($isprotien=='yes'){
-				document.repeat.theRepeat4.value=$windup;
-			} else {
-				return $windup;
-			}
-		}
+        if ($thestrain) {
+            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',\n found strain '+$thestrain);
+            //document.repeat.theRepeat4.value='returns '+$final.join(', ')+',\n found strain '+$thestrain;
+        } else {
+            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',\n-but doesn\'t match a strain');
+            //document.repeat.theRepeat4.value='returns '+$final.join(', ')+',\nbut doesn\'t match a strain';
+        }
 
-	} else {
-		if ($isprotien=='yes'){
-			document.repeat.theRepeat4.value='no matches';
-			$aouga=new Array();
-		} else {
-			return "no matches";
-			$aouga=new Array();
-		}
-	}
+    } else { 
+
+        var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',\n-but doesn\'t match a strain');
+        //document.repeat.theRepeat4.value='returns '+$final.join(', ')+',\nbut doesn\'t match a strain';
+    }
+
+return $results;
 
 }
