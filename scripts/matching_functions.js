@@ -27,10 +27,13 @@ function handleprotein() {
 
 	$isprotien=Boolean(true);
 	var $found=look_for_repeats($inquestion);
+	alert($found);
 	if ($found[0]) {
-	    document.repeat.theRepeat4.value=$found[1];
+	    document.getElementByName('theRepeat4').innerHTML=$found[1];
+	    //document.repeat.theRepeat4.value=$found[1];
 	} else {
-	    document.repeat.theRepeat4.value=$found[1];
+	    document.getElementByName('theRepeat4').innerHTML=$found[1];
+	    //document.repeat.theRepeat4.value=$found[1];
 	}
 	$isprotien=Boolean(false);
 
@@ -96,11 +99,14 @@ function readingframe($transcription) {
 		document.repeat.theRepeat2.value=$kansas5+" [includes r.c.]";
 		document.repeat.theRepeat3.value=$kansas6+" [includes r.c.]";
 	} else {
-
+    /*
 		document.repeat.theRepeat1.value=$kansas1[1];
 		document.repeat.theRepeat2.value=$kansas2[1];
 		document.repeat.theRepeat3.value=$kansas3[1];
-
+    */
+        document.getElementById('theRepeat1').innerHTML=$kansas1[1];
+        document.getElementById('theRepeat2').innerHTML=$kansas2[1];
+        document.getElementById('theRepeat3').innerHTML=$kansas3[1];
 	}
 }
 
