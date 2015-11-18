@@ -29,14 +29,14 @@ var $repeats=new Array();
 	$repeats[20]=Array('U','ddsssasgqqqessvssqsdqastssqlg');
 	$repeats[21]=Array('V','adsssaggqqessvssqsdqastssqlg');
 	$repeats[22]=Array('W','tdsssasgqqqessvssqsgqastssqsr');
-	$repeats[23]=Array('\u03a6','tdsssasgqqqessvssqseastssqlg');	// phi
+	$repeats[23]=Array('&Phi;','tdsssasgqqqessvssqseastssqlg');	// phi
 	$repeats[24]=Array(' 4','tdsssasgqqqessvlsqsgqastssqlg');		// formerly Israeli-4
 	$repeats[25]=Array(' 3','adsssasgqqqessvlsqsgqastssqlg');		// formerly Israeli-3
-	$repeats[37]=Array('\u03a3','adsssaggqqqessvssqseastssqlg');	// sigma
-	$repeats[38]=Array('\u03b1','adsssasgvlsqsgqastssqlg');			// alpha
-	$repeats[39]=Array('\u03b2','tdsssagdqqqgsgvssqsgqastssqlg');	// beta
-	$repeats[40]=Array('\u0393','tdsssasgqqqessvssqsdastssqlg');	// gamma
-	$repeats[41]=Array('\u03c0','adsssaggqqqessvssqsgqastssqfg');	// pi
+	$repeats[37]=Array('&Sigma;','adsssaggqqqessvssqseastssqlg');	// sigma
+	$repeats[38]=Array('&alpha;','adsssasgvlsqsgqastssqlg');			// alpha
+	$repeats[39]=Array('&beta;','tdsssagdqqqgsgvssqsgqastssqlg');	// beta
+	$repeats[40]=Array('&Gamma;','tdsssasgqqqessvssqsdastssqlg');	// gamma
+	$repeats[41]=Array('&pi;','adsssaggqqqessvssqsgqastssqfg');	// pi
 	$repeats[42]=Array(' 1','sgsssasgqqqessvlsqggqastssqlg');		// formerly Israeli-1
 	$repeats[43]=Array(' 2','tdsssasgqqqessvspqsgqastssqlg');		// formerly 2
 	$repeats[44]=Array(' 5','adsssasgqqqessvssqsdastssqlg');			// formerly Italy-5
@@ -44,9 +44,9 @@ var $repeats=new Array();
 	$repeats[46]=Array(' 7','tdsssasgqqqessvsshseastssqlg');			// formerly Italy-7, tdsvsasgqqqessvsshseastssqlg
 	$repeats[47]=Array(' 8','adgssagdqqqessvssqsgastssqsg');			// formerly Australia-1
 	$repeats[48]=Array('m','adsssasgqqqessvssqsgqastssqsg');
-	$repeats[49]=Array('\u03c3','adsssaggqqqesivssqsdhastssqlg');	// small sigma
-	$repeats[50]=Array('\u03bc','adsssasglqqessvssqsgqastssqlg');	// mu
-	$repeats[51]=Array('\u03c4','tdsssasgqqqessvlspsgqastssqlg');	// tau
+	$repeats[49]=Array('&sigma;','adsssaggqqqesivssqsdhastssqlg');	// small sigma
+	$repeats[50]=Array('&mu;','adsssasglqqessvssqsgqastssqlg');	// mu
+	$repeats[51]=Array('&tau;','tdsssasgqqqessvlspsgqastssqlg');	// tau
 		/*
 			new published repeats from de la Fuente
 			Vet Micro 119 (2007) 382-390
@@ -268,24 +268,24 @@ var $strain=new Array;
 	$strain[34]=Array('Kansas 4318','DDDDDE');
 	$strain[35]=Array('Kansas 2070','DDDDDDE');
 	$strain[36]=Array('Kansas 7030','DDDDDDDE');
-	$strain[37]=Array('Kansas 0050','EM\u03a6');
+	$strain[37]=Array('Kansas 0050','EM&Phi;');
 	$strain[38]=Array('Canadian bison','DQQR');
 	$strain[39]=Array('US bison','KBMFW');
-	$strain[40]=Array('Yucat\u00e1n','TCBBCB\u03c0');
-	$strain[41]=Array('Mexico, Morelos, and Veracruz','\u03b1\u03b2\u03b2\u0393');
-	$strain[42]=Array('Brazil 9','\u03b1\u03b2\u03c4M');
-	$strain[43]=Array('Brazil 12','\u03b1\u03b2\u03b2N');
+	$strain[40]=Array('Yucat\u00e1n','TCBBCB&pi;');
+	$strain[41]=Array('Mexico, Morelos, and Veracruz','&alpha;&beta;&beta;&Gamma;');
+	$strain[42]=Array('Brazil 9','&alpha;&beta;&tau;M');
+	$strain[43]=Array('Brazil 12','&alpha;&beta;&beta;N');
 	$strain[44]=Array('Brazil 5','CFN');
-	$strain[45]=Array('Brazil','BBQ\u03c3\u03bc');
-	$strain[46]=Array('x','x');	// #67 is newer for Virasoro, was \u03a3\u03b2QBC
+	$strain[45]=Array('Brazil','BBQ&sigma;&mu;');
+	$strain[46]=Array('x','x');	// #67 is newer for Virasoro, was &Sigma;&beta;QBC
 	$strain[47]=Array('Salta','BBM');
-	$strain[48]=Array('Puerto Rico','E\u03a6\u03a6\u03a6\u03a6\u03a6');
+	$strain[48]=Array('Puerto Rico','E&Phi;&Phi;&Phi;&Phi;&Phi;');
 	$strain[49]=Array('Israel-tailed-1FM3',' 1FM 3');
 	$strain[50]=Array('Israel-tailed-12M3',' 1 2M 3');
 	$strain[51]=Array('Israel non-tailed',' 1 4');
 	$strain[52]=Array('Italy 30, Italy 31','MMMQ');
-	$strain[53]=Array('Italy 32',' 5\u0393\u0393\u0393');
-	$strain[54]=Array('Italy 16',' 5\u03a6\u03a6\u03a6');
+	$strain[53]=Array('Italy 32',' 5&Gamma;&Gamma;&Gamma;');
+	$strain[54]=Array('Italy 16',' 5&Phi;&Phi;&Phi;');
 	$strain[55]=Array('Italy 6','QMQQM');
 	$strain[56]=Array('Italy 8','QNNN');
 	$strain[57]=Array('Italy 47',' 6 7 7 7');
@@ -295,24 +295,24 @@ var $strain=new Array;
 	$strain[59]=Array('Stillwater 483, OK','KBMH');
 	$strain[60]=Array('Oregon','G');
 	$strain[61]=Array('Aguascalientes, Mexico',' 4 9 10 11 9');
-	$strain[62]=Array('Pichucalco, Mexico','\u03b1\u03b2\u03b2\u0393\u03b2\u0393');
+	$strain[62]=Array('Pichucalco, Mexico','&alpha;&beta;&beta;&Gamma;&beta;&Gamma;');
 	$strain[63]=Array('Puente de Ixtla, Mexico',' 12 13 14');
-	$strain[64]=Array('Parana, Brazil','\u03b1\u03b2\u03b2\u03b2\u03b2\u0393');
+	$strain[64]=Array('Parana, Brazil','&alpha;&beta;&beta;&beta;&beta;&Gamma;');
 	$strain[65]=Array('Parana 2, Brazil',' 16F 17 13 18');
-	$strain[66]=Array('Parana 3, Brazil','\u03c4 10 15');
-	$strain[67]=Array('Virasoro, Argentina','\u03a3BQBC');
+	$strain[66]=Array('Parana 3, Brazil','&tau; 10 15');
+	$strain[67]=Array('Virasoro, Argentina','&Sigma;BQBC');
 	// [68] used to be Salta, Argentina, same as 71
 	$strain[69]=Array('Entre Rios 1,2,3,4, Argentina','FMM');
-	$strain[70]=Array('Santa Fe 37,43,50,59, Argentina','\u03b1\u03b2\u03b2\u03b2\u0393');
+	$strain[70]=Array('Santa Fe 37,43,50,59, Argentina','&alpha;&beta;&beta;&beta;&Gamma;');
 	$strain[71]=Array('Salta, Santa Fe 111,473,532,116, Argentina','BBM');
-	$strain[72]=Array('Chaco 2-1, Chaco 3-1, Chaco 7, Chaco 8, Argentina','\u03c4 22 13 18');
-	$strain[73]=Array('Chaco 2 var2, Argentina','\u03b1\u03b2\u0393\u0393\u03b2\u03b2\u0393');
-	$strain[74]=Array('Chaco 3 var2, Argentina','\u03c4 11 10 10 11 10 15');
-	$strain[75]=Array('Chaco 5, Argentina - Parana 3, Brazil','\u03c4 10 15');
+	$strain[72]=Array('Chaco 2-1, Chaco 3-1, Chaco 7, Chaco 8, Argentina','&tau; 22 13 18');
+	$strain[73]=Array('Chaco 2 var2, Argentina','&alpha;&beta;&Gamma;&Gamma;&beta;&beta;&Gamma;');
+	$strain[74]=Array('Chaco 3 var2, Argentina','&tau; 11 10 10 11 10 15');
+	$strain[75]=Array('Chaco 5, Argentina - Parana 3, Brazil','&tau; 10 15');
 	$strain[76]=Array('Cordoba 1, Cordoba 2, Argentina',' 23 24 25 26 27 27');
 	$strain[77]=Array('Quitilipi, Argentina',' 28 29M 29MF');
 	$strain[78]=Array('Mercedes, Argentina',' 23 30 31 31 31');
-	$strain[79]=Array('Corrientes, Argentina','\u03b1\u03b2\u03b2\u03b2');
+	$strain[79]=Array('Corrientes, Argentina','&alpha;&beta;&beta;&beta;');
 	$strain[80]=Array('Havana, Cuba','ABBBB');
 	$strain[81]=Array('Azaria, Israel',' 1FM 3 3');
 	$strain[82]=Array('Lhavot-Habasan','MFFF');
@@ -341,7 +341,7 @@ var $strain=new Array;
 	$strain[105]=Array('SW112, South Africa',' 42 43 25 31');
 	$strain[106]=Array('SA243, South Africa',' 3 36 3 36 36 3 36 38');
 	
-var $repeat_dict={"adsssaggqqqessvssqsdqastssqlg": "B", "adsssasgqqqessvssqsdpatsspllg": "118", "adsssasgqqqessvssqseagtssqlgg": "\\u039b", "tdsssasgqqqessvssqsdqastssqlg": "N", "agsssagdqqqessvssqsdqastssqlg": "40", "adsssasgqqqesivssqseastssqlgg": "139", "adsssaggqqqessvssqsdqantsshlg": "102", "adsssasgvlsqsgqastspqlg": "108", "adsssasgqqqessvlsqseastsshlgg": "96", "adsssagdqqessvssqsgastssqlg": "72", "adsssaggqqqessvssqsdqassssqlg": "90", "adsssasgqqqessvlsqsdlsstwsqlg": "82", "ddssasggqqqssvaspsgdaatsspllt": "133", "tdgssasgqqqessvlsqsdeastssqsg": "59", "adgssaggqqqessvssqsdqastssqlg": "K", "adsssasgqqqesgvlsqsgqastssqlgvg": "94", "ddssstgdqqqssvvspsddaarssqlwt": "135", "tdsssasgqqqessvlsqsdqactssqlg": "112", "angssasgqqqessvlsqsdqastssqlg": "160", "tdsspemgqqqessvfsqsaqastssqsg": "153", "adsssasgvlsqsgqastssqlg": "\\u03b1", "adgssagdqqqessvssqsgastssqsg": "8", "tdsssasgqqqessvssqsdastssqlg": "\\u0393", "adsssesgqqqessvlsqsgqastssqlg": "104", "tdgssagdqqqgsgvssqsgqastssqlg": "49", "adsssasgqqqesivssqseartssqlgg": "137", "tdsssagdqqqessvssqsdastssqlg": "62", "tdsssasgqkqessvlpqsgqastssqlg": "88", "adsssasglqqessvssqsgqastssqlg": "\\u03bc", "adsssasgqqqessvlsqsdpatsssllg": "119", "adsssasdqqqesgvpsqseastssqlg": "107", "agrssasgqqqessvlsqsgqastssqlg": "68", "adsslaggqqqessvssqsdqastssqlg": "J", "adssstggqqqessvsshseastssqlgg": "95", "ansssasgqqqessvlsqsgqastssqlg": "155", "adsssagnqqqessvssqseastssqlg": "146", "tdgssasgqqqessvlsqsdeastssqlg": "58", "adgssagdqqqesgvlsqsgqastssqlg": "75", "tdsssasgqqqkssvlsqssqastssqlg": "23", "adsssasgqqqessvsshseastssqlg": "6", "adsssasgrqqessvssqsdqastssqig": "\\u03d6", "tdsssasgqqqesnvlspcgrastssqlg": "126", "adsssasgqqqessvlsqsdeastssqlg": "161", "tdsssgsgqqqessvlsqssqarsssqlg": "143", "ddsssasgqqqessvlsqsdqastssqlg": "39", "adsssasgqqqessvlsqssqastssqlg": "25", "tdsssagdqqressvlspsgqastssqlgvg": "EV3", "tdsssasgqpqessvlcvsdlsstssqlg": "79", "adsssasgrhqksnvssqseactssqlg": "129", "agsssaggqqqessvssqsdqattssqlg": "101", "agsssesgqqqessvlsqsgqastssqlg": "28", "ddsssasgqqqessvssqseastssqlg": "A", "tdsssasghqrestvlsrsdqastssqlg": "121", "adsssasgqqqessvlsqsgqastssqlg": "3", "adsssasgqqqessvlspsgqastssqsg": "22", "tdsssasgqqqessvlpqsgqastssqsg": "42", "adsswpsgnrqespvlshsytttssqlrg": "99", "tdsssasgqhqesivssqseastssqlw": "57", "adsssasgqqqessvlsqsgqastssqsg": "38", "adsssasgqqqessvpsqseaatssql": "159", "tdsssaggqqqessvssqsdastssqlg": "105", "adssspsgqqqessvssqseaatssevrg": "97", "tdsssasdqqqessvssqsgqastssqlg": "29", "adsssasgqqqessvssqsdastssqlg": "5", "tdsssagdqqqessvssqsgastssqlg": "61", "adsssasgqqqgssvlsqsgqastssqlg": "103", "adgssagdqqqessvssqsgagpssqlg": "85", "tdsssagdqqqgsgvssqsgqastssqlg": "\\u03b2", "ndsssasgqqqessvlspsgqastssqlgvg": "93", "tdsssasgqqqessgssqsgqashsaqsg": "P", "adsssasgqqqessvssqseastssqlgg": "D", "tdsssasgqwcessvssqseastssqlg": "130", "adsssaggqqqessvssqseastssqlg": "\\u03a3", "tdsssagdqqqessvssqsgqastssqlg": "81", "adsssagnqqqessvlpqsgqastssqlg": "26", "tdsssasgqqqestvssqsdastssqlg": "116", "adsssagnqqqessvssqsgastssqlg": "84", "tdsssagnqqqessvssqsgagtssqlg": "147", "agsssaggqqqessvssqsdqastssqlg": "T", "tdsssasgqqqessvlppsgqastssqlg": "53", "tdsssasgrqqessvlsqsdqastssqsr": "111", "agsssaggqqqessvssqsdaatssyllg": "117", "tdsssagdqhqessvssqsgqastssqlg": "55", "adsssagdqqqessvssqsdqastssqlg": "47", "adspsasgqqqessvssqsdqastssqlg": "\\u03c9", "adsssasgqqqessvssqsdastssqsg": "9", "adsssasgqqqessvssqsevstssqlgg": "\\u039e", "tdgssasgqqqessvlspsgqastssqlgvg": "48", "adsssasgqqqessvssqsgqastssqsg": "m", "tdsssasgqqqessvlpqsdqastssqlg": "45", "adsssasgqqqkssvlsqssqastssqlg": "30", "ddsssasgqqqessvlpqsgqdstssqsg": "144", "tdsssagdrqqgsgvssqsgqastssqlg": "50", "tdsssasgqqqessvlpqsghartssqsg": "142", "adsssasgqqqessvssqsgqastssqlg": "M", "adsssasggqqqssvvsssddagtssplwt": "132", "adsssasgqqqessvlpqsgqastssqsg": "43", "adsssasgqqqesgvlsqstqastssqlr": "92", "agsssadgqqqessvssqsdqastssqlg": "L", "adsssaggqqhessvssqsdqastssqlw": "R", "tdsssasgqqqessvlsqsgqaspssqlg": "67", "adsssasgqqqessvssqsdqastssqlg": "Q", "adsssasgqqqessvlsqsiqastssqlr": "87", "tdsssasgeqqessvlspsgeastssqlg": "56", "adsssasgqqqessvssqseassssqlgg": "138", "absssasgqqqessvlsqsdqstssqlg": "158", "adsssaggqqqessessqsdqastssklg": "89", "tdsssasgqqqesgvssqsdastssqlg": "76", "adsssasgqqqessvssqsdqactssqlg": "\\u03b6", "gdsssssgqqqessvlsqssqastssqlg": "145", "tdsssagdhqqgsgvssqsgeastssqlg": "114", "tdsssagdqqqesgvssqsgqastssqlg": "73", "adsssasgqqqessvlspsgqastssqlgvg": "11", "tdsssagdqkqessvssqigastssklg": "150", "adsssagdqqqessvssqsgqastssqlg": "80", "tdsssasgqqqessvlsqsgqastssqsg": "37", "tdsssasgqqqesgvssqsgqastssqlg": "17", "tdsssasgqqqessvssqsgqagtssqsg": "35", "adsssasgqqqessassqsdqastssqlg": "\\u03a9", "adsssagdqqqesgvlsqsgqastssqlg": "20", "tdsssassqqqessvlsqsdqastssqlg": "EV7", "tdsssasgqqqessvssqsgqastssqsg": "H", "adsssagdrqqesgvlsqsgqastssqlg": "19", "adsssasgqqqessvlsqsdqastssqsg": "154", "tdsssasgqqqessvlspsgqastssqlg": "\\u03c4", "tdsssasgqqqessvssqsgqastssqlr": "91", "tdsssasgqhqessvlsqsdqastssqsg": "125", "tdsssasgqqressvlsqsdqastssqlg": "113", "tdsssasgqqqvssvssqsdastssqlg": "52", "tdsssasgqqqessvlsqsgastssqlg": "14", "saggqqqessvssqsdqastssqlg": "O", "ddsssasgqqqessvssqsdqastssqlg": "U", "tdsssasgqqqessvssqsgqastssqsr": "W", "adsssagdqqkesnvssqtgqaspsshlr": "127", "adsssvsgqqqessvlsqsgqastssqlg": "77", "adsssaggqqqessvssqsgqastssqlg": "C", "tdsssasgqqqessvssqsgqastssqlg": "F", "adsssasgqqqegsvssqsbqastspqlg": "\\u03d5", "tdsssagdqqqessvsslsgastssqlg": "149", "tdsssasgqqqessvsshseastssqlg": "7", "agsssaggqqqessvssqseastssqlgg": "64", "sgsssasgqqqessvlsqggqastssqlg": "1", "tdsssasgqqqesgvlsqsgqastssqlg": "100", "ddsssasgqqqessvssqsgqastssqlg": "I", "adgssagdqqqessvssqsgqastssqlg": "106", "adsssasgqqresgvlsqsgqastsshlg": "110", "assssasgqqqessvlsqsdqastssqlg": "41", "agsssasgqqqessvlsqsgqastssqlg": "63", "tdsssagdqqqessassqsgastssqlg": "70", "adsssagnqqqessvssqsghastssqlg": "156", "tdsssasgqqqesgvlsqsgqastssqlr": "141", "tdsssasgqqqesgvlsqsgqastssqsg": "83", "adsssasgqqqessvssqsdqastspqlg": "\\u0398", "tdsssagdqqqessvssqsgasassklr": "148", "adsssasgqqqessvssqseastssqlg": "E", "adsssagdqqqessvlsqsgqastssqlg": "21", "adsssasgqqqessvlsksgqagtssqlg": "33", "adsssasgqqqesgvlsqsgqastssqlr": "140", "adsssasgqqqessvlsqseastssqlgg": "65", "tdsssagdqqqessvssksgastssqlg": "86", "adsssasgqqqessvlsqsdqastssqlg": "27", "tdswsasgqqqessvlsqsdqastssqlg": "157", "adsssasgqqqesgvpsqsgqastssqlg": "74", "adsssasgqqqessvlspsgqastssqlg": "10", "adsssasgqqqessvssqseastssqlrg": "136", "tdsssagdqqqgsgvsaqsgqaspwsqlg": "128", "adsssasgqqqesgvlsqsgqastssqlg": "15", "adsssaggqqqessvssqsgqastssqfg": "\\u03c0", "tdsssasgqqqessvlsqsdqastssqsg": "18", "adsssasgqqqessvlsqseastssqlg": "98", "ansssasgqqeessvlsqsdqastssqlg": "151", "adsssasgqqqessvpsqseastssqlg": "36", "adsssagnqqqessvssqsdastssqlg": "31", "tdsssasghqrestvlsqsdqastssqsg": "122", "adgssagdqqqessvssqsgastssqlg": "60", "tdsssasgqqqessvlsqsgqastssqlg": "4", "tdsssaggqqqessvssqsgqastssqlg": "32", "adsssaggqqessvssqsdqastssqlg": "V", "tdsssasgqqrestvlsqsdqastsshsg": "123", "tdsssagdhqqgsgvssqsgqastssqlg": "115", "adsssasgqqqessvssrsdqastssqlg": "\\u03a8", "tdsssasgqqqessvspqsgqastssqlg": "2", "adsssagdqqqgssvssqsgqastssqlg": "16", "lhsssasgqqqessvsfqtgqastssqlg": "54", "adsssasgrqqessvssqsdqastssqlg": "\\u0394", "tdsssasgqqqessvlpqsgqastssqlg": "46", "tdsssasaqqqessvssqsgqastssqsg": "44", "adsssasgqqpessvlspsgqastssqlg": "109", "tdsssagdqrqgsgvssqsgqastssqlg": "51", "adssssgdqqqnsvaspsddaatsshlwt": "134", "adsssapgqqqessvssqsdqastssqlg": "\\u03b4", "tdsssasgqqqessvssqsddatsssqls": "120", "agsssasgqqqessvlsqsdqastssqlg": "12", "adsssagnqqqessvlpqsgqastssqsg": "24", "ansssasgqqqessvlsqsdqastssqlg": "34", "adgssagdqqqessvssqsgaspssqlg": "69", "tdsssagdqqqessvssqsdastssqlr": "66", "tdsssasgqqqessvssqseastssqlr": "131", "adsssaggqqqessvssqsgastssqlg": "EV1", "tdsssasgqqrestvlsqsdqastssqlg": "124", "tdsssasgqqqessvlsqsdqastssqlr": "152", "tdsssagdqqhessvssqsgartssqlg": "71", "ddsssasgqqqessvssqsgqastssqsg": "G", "tdsssasgqqqessvssqseastssqlg": "\\u03a6", "adsssaggqqqesivssqsdhastssqlg": "\\u03c3", "adsssasdqqqessvlspsgqastssqlg": "EV6", "tdsssasgqqqessvlsqssqastss~qlg": "78", "tdsssasgqqqessvlsqsdqastssqlg": "13", "tdsssagdqqqgsgvssqsgqastssqsg": "EV8"};
+var $repeat_dict={"adsssaggqqqessvssqsdqastssqlg": "B", "adsssasgqqqessvssqsdpatsspllg": "118", "adsssasgqqqessvssqseagtssqlgg": "\\u039b", "tdsssasgqqqessvssqsdqastssqlg": "N", "agsssagdqqqessvssqsdqastssqlg": "40", "adsssasgqqqesivssqseastssqlgg": "139", "adsssaggqqqessvssqsdqantsshlg": "102", "adsssasgvlsqsgqastspqlg": "108", "adsssasgqqqessvlsqseastsshlgg": "96", "adsssagdqqessvssqsgastssqlg": "72", "adsssaggqqqessvssqsdqassssqlg": "90", "adsssasgqqqessvlsqsdlsstwsqlg": "82", "ddssasggqqqssvaspsgdaatsspllt": "133", "tdgssasgqqqessvlsqsdeastssqsg": "59", "adgssaggqqqessvssqsdqastssqlg": "K", "adsssasgqqqesgvlsqsgqastssqlgvg": "94", "ddssstgdqqqssvvspsddaarssqlwt": "135", "tdsssasgqqqessvlsqsdqactssqlg": "112", "angssasgqqqessvlsqsdqastssqlg": "160", "tdsspemgqqqessvfsqsaqastssqsg": "153", "adsssasgvlsqsgqastssqlg": "\&alpha;", "adgssagdqqqessvssqsgastssqsg": "8", "tdsssasgqqqessvssqsdastssqlg": "\&Gamma;", "adsssesgqqqessvlsqsgqastssqlg": "104", "tdgssagdqqqgsgvssqsgqastssqlg": "49", "adsssasgqqqesivssqseartssqlgg": "137", "tdsssagdqqqessvssqsdastssqlg": "62", "tdsssasgqkqessvlpqsgqastssqlg": "88", "adsssasglqqessvssqsgqastssqlg": "\&mu;", "adsssasgqqqessvlsqsdpatsssllg": "119", "adsssasdqqqesgvpsqseastssqlg": "107", "agrssasgqqqessvlsqsgqastssqlg": "68", "adsslaggqqqessvssqsdqastssqlg": "J", "adssstggqqqessvsshseastssqlgg": "95", "ansssasgqqqessvlsqsgqastssqlg": "155", "adsssagnqqqessvssqseastssqlg": "146", "tdgssasgqqqessvlsqsdeastssqlg": "58", "adgssagdqqqesgvlsqsgqastssqlg": "75", "tdsssasgqqqkssvlsqssqastssqlg": "23", "adsssasgqqqessvsshseastssqlg": "6", "adsssasgrqqessvssqsdqastssqig": "\\u03d6", "tdsssasgqqqesnvlspcgrastssqlg": "126", "adsssasgqqqessvlsqsdeastssqlg": "161", "tdsssgsgqqqessvlsqssqarsssqlg": "143", "ddsssasgqqqessvlsqsdqastssqlg": "39", "adsssasgqqqessvlsqssqastssqlg": "25", "tdsssagdqqressvlspsgqastssqlgvg": "EV3", "tdsssasgqpqessvlcvsdlsstssqlg": "79", "adsssasgrhqksnvssqseactssqlg": "129", "agsssaggqqqessvssqsdqattssqlg": "101", "agsssesgqqqessvlsqsgqastssqlg": "28", "ddsssasgqqqessvssqseastssqlg": "A", "tdsssasghqrestvlsrsdqastssqlg": "121", "adsssasgqqqessvlsqsgqastssqlg": "3", "adsssasgqqqessvlspsgqastssqsg": "22", "tdsssasgqqqessvlpqsgqastssqsg": "42", "adsswpsgnrqespvlshsytttssqlrg": "99", "tdsssasgqhqesivssqseastssqlw": "57", "adsssasgqqqessvlsqsgqastssqsg": "38", "adsssasgqqqessvpsqseaatssql": "159", "tdsssaggqqqessvssqsdastssqlg": "105", "adssspsgqqqessvssqseaatssevrg": "97", "tdsssasdqqqessvssqsgqastssqlg": "29", "adsssasgqqqessvssqsdastssqlg": "5", "tdsssagdqqqessvssqsgastssqlg": "61", "adsssasgqqqgssvlsqsgqastssqlg": "103", "adgssagdqqqessvssqsgagpssqlg": "85", "tdsssagdqqqgsgvssqsgqastssqlg": "\&beta;", "ndsssasgqqqessvlspsgqastssqlgvg": "93", "tdsssasgqqqessgssqsgqashsaqsg": "P", "adsssasgqqqessvssqseastssqlgg": "D", "tdsssasgqwcessvssqseastssqlg": "130", "adsssaggqqqessvssqseastssqlg": "\&Sigma;", "tdsssagdqqqessvssqsgqastssqlg": "81", "adsssagnqqqessvlpqsgqastssqlg": "26", "tdsssasgqqqestvssqsdastssqlg": "116", "adsssagnqqqessvssqsgastssqlg": "84", "tdsssagnqqqessvssqsgagtssqlg": "147", "agsssaggqqqessvssqsdqastssqlg": "T", "tdsssasgqqqessvlppsgqastssqlg": "53", "tdsssasgrqqessvlsqsdqastssqsr": "111", "agsssaggqqqessvssqsdaatssyllg": "117", "tdsssagdqhqessvssqsgqastssqlg": "55", "adsssagdqqqessvssqsdqastssqlg": "47", "adspsasgqqqessvssqsdqastssqlg": "\\u03c9", "adsssasgqqqessvssqsdastssqsg": "9", "adsssasgqqqessvssqsevstssqlgg": "\\u039e", "tdgssasgqqqessvlspsgqastssqlgvg": "48", "adsssasgqqqessvssqsgqastssqsg": "m", "tdsssasgqqqessvlpqsdqastssqlg": "45", "adsssasgqqqkssvlsqssqastssqlg": "30", "ddsssasgqqqessvlpqsgqdstssqsg": "144", "tdsssagdrqqgsgvssqsgqastssqlg": "50", "tdsssasgqqqessvlpqsghartssqsg": "142", "adsssasgqqqessvssqsgqastssqlg": "M", "adsssasggqqqssvvsssddagtssplwt": "132", "adsssasgqqqessvlpqsgqastssqsg": "43", "adsssasgqqqesgvlsqstqastssqlr": "92", "agsssadgqqqessvssqsdqastssqlg": "L", "adsssaggqqhessvssqsdqastssqlw": "R", "tdsssasgqqqessvlsqsgqaspssqlg": "67", "adsssasgqqqessvssqsdqastssqlg": "Q", "adsssasgqqqessvlsqsiqastssqlr": "87", "tdsssasgeqqessvlspsgeastssqlg": "56", "adsssasgqqqessvssqseassssqlgg": "138", "absssasgqqqessvlsqsdqstssqlg": "158", "adsssaggqqqessessqsdqastssklg": "89", "tdsssasgqqqesgvssqsdastssqlg": "76", "adsssasgqqqessvssqsdqactssqlg": "\\u03b6", "gdsssssgqqqessvlsqssqastssqlg": "145", "tdsssagdhqqgsgvssqsgeastssqlg": "114", "tdsssagdqqqesgvssqsgqastssqlg": "73", "adsssasgqqqessvlspsgqastssqlgvg": "11", "tdsssagdqkqessvssqigastssklg": "150", "adsssagdqqqessvssqsgqastssqlg": "80", "tdsssasgqqqessvlsqsgqastssqsg": "37", "tdsssasgqqqesgvssqsgqastssqlg": "17", "tdsssasgqqqessvssqsgqagtssqsg": "35", "adsssasgqqqessassqsdqastssqlg": "\\u03a9", "adsssagdqqqesgvlsqsgqastssqlg": "20", "tdsssassqqqessvlsqsdqastssqlg": "EV7", "tdsssasgqqqessvssqsgqastssqsg": "H", "adsssagdrqqesgvlsqsgqastssqlg": "19", "adsssasgqqqessvlsqsdqastssqsg": "154", "tdsssasgqqqessvlspsgqastssqlg": "\&tau;", "tdsssasgqqqessvssqsgqastssqlr": "91", "tdsssasgqhqessvlsqsdqastssqsg": "125", "tdsssasgqqressvlsqsdqastssqlg": "113", "tdsssasgqqqvssvssqsdastssqlg": "52", "tdsssasgqqqessvlsqsgastssqlg": "14", "saggqqqessvssqsdqastssqlg": "O", "ddsssasgqqqessvssqsdqastssqlg": "U", "tdsssasgqqqessvssqsgqastssqsr": "W", "adsssagdqqkesnvssqtgqaspsshlr": "127", "adsssvsgqqqessvlsqsgqastssqlg": "77", "adsssaggqqqessvssqsgqastssqlg": "C", "tdsssasgqqqessvssqsgqastssqlg": "F", "adsssasgqqqegsvssqsbqastspqlg": "\\u03d5", "tdsssagdqqqessvsslsgastssqlg": "149", "tdsssasgqqqessvsshseastssqlg": "7", "agsssaggqqqessvssqseastssqlgg": "64", "sgsssasgqqqessvlsqggqastssqlg": "1", "tdsssasgqqqesgvlsqsgqastssqlg": "100", "ddsssasgqqqessvssqsgqastssqlg": "I", "adgssagdqqqessvssqsgqastssqlg": "106", "adsssasgqqresgvlsqsgqastsshlg": "110", "assssasgqqqessvlsqsdqastssqlg": "41", "agsssasgqqqessvlsqsgqastssqlg": "63", "tdsssagdqqqessassqsgastssqlg": "70", "adsssagnqqqessvssqsghastssqlg": "156", "tdsssasgqqqesgvlsqsgqastssqlr": "141", "tdsssasgqqqesgvlsqsgqastssqsg": "83", "adsssasgqqqessvssqsdqastspqlg": "\\u0398", "tdsssagdqqqessvssqsgasassklr": "148", "adsssasgqqqessvssqseastssqlg": "E", "adsssagdqqqessvlsqsgqastssqlg": "21", "adsssasgqqqessvlsksgqagtssqlg": "33", "adsssasgqqqesgvlsqsgqastssqlr": "140", "adsssasgqqqessvlsqseastssqlgg": "65", "tdsssagdqqqessvssksgastssqlg": "86", "adsssasgqqqessvlsqsdqastssqlg": "27", "tdswsasgqqqessvlsqsdqastssqlg": "157", "adsssasgqqqesgvpsqsgqastssqlg": "74", "adsssasgqqqessvlspsgqastssqlg": "10", "adsssasgqqqessvssqseastssqlrg": "136", "tdsssagdqqqgsgvsaqsgqaspwsqlg": "128", "adsssasgqqqesgvlsqsgqastssqlg": "15", "adsssaggqqqessvssqsgqastssqfg": "\&pi;", "tdsssasgqqqessvlsqsdqastssqsg": "18", "adsssasgqqqessvlsqseastssqlg": "98", "ansssasgqqeessvlsqsdqastssqlg": "151", "adsssasgqqqessvpsqseastssqlg": "36", "adsssagnqqqessvssqsdastssqlg": "31", "tdsssasghqrestvlsqsdqastssqsg": "122", "adgssagdqqqessvssqsgastssqlg": "60", "tdsssasgqqqessvlsqsgqastssqlg": "4", "tdsssaggqqqessvssqsgqastssqlg": "32", "adsssaggqqessvssqsdqastssqlg": "V", "tdsssasgqqrestvlsqsdqastsshsg": "123", "tdsssagdhqqgsgvssqsgqastssqlg": "115", "adsssasgqqqessvssrsdqastssqlg": "\\u03a8", "tdsssasgqqqessvspqsgqastssqlg": "2", "adsssagdqqqgssvssqsgqastssqlg": "16", "lhsssasgqqqessvsfqtgqastssqlg": "54", "adsssasgrqqessvssqsdqastssqlg": "\\u0394", "tdsssasgqqqessvlpqsgqastssqlg": "46", "tdsssasaqqqessvssqsgqastssqsg": "44", "adsssasgqqpessvlspsgqastssqlg": "109", "tdsssagdqrqgsgvssqsgqastssqlg": "51", "adssssgdqqqnsvaspsddaatsshlwt": "134", "adsssapgqqqessvssqsdqastssqlg": "\\u03b4", "tdsssasgqqqessvssqsddatsssqls": "120", "agsssasgqqqessvlsqsdqastssqlg": "12", "adsssagnqqqessvlpqsgqastssqsg": "24", "ansssasgqqqessvlsqsdqastssqlg": "34", "adgssagdqqqessvssqsgaspssqlg": "69", "tdsssagdqqqessvssqsdastssqlr": "66", "tdsssasgqqqessvssqseastssqlr": "131", "adsssaggqqqessvssqsgastssqlg": "EV1", "tdsssasgqqrestvlsqsdqastssqlg": "124", "tdsssasgqqqessvlsqsdqastssqlr": "152", "tdsssagdqqhessvssqsgartssqlg": "71", "ddsssasgqqqessvssqsgqastssqsg": "G", "tdsssasgqqqessvssqseastssqlg": "\&Phi;", "adsssaggqqqesivssqsdhastssqlg": "\&sigma;", "adsssasdqqqessvlspsgqastssqlg": "EV6", "tdsssasgqqqessvlsqssqastss~qlg": "78", "tdsssasgqqqessvlsqsdqastssqlg": "13", "tdsssagdqqqgsgvssqsgqastssqsg": "EV8"};
 
 var $strain_dict={
 "A B B B B B B B" : "Florida",
@@ -381,24 +381,24 @@ var $strain_dict={
 "D D D D D E" : "Kansas 4318",
 "D D D D D D E" : "Kansas 2070",
 "D D D D D D D E" : "Kansas 7030",
-"E M \u03a6" : "Kansas 0050",
+"E M &Phi;" : "Kansas 0050",
 "D Q Q R" : "Canadian bison",
 "K B M F W" : "US bison",
-"T C B B C B \u03c0" : "Yucat \u00e1n",
-"\u03b1 \u03b2 \u03b2 \u0393" : "Mexico, Morelos, and Veracruz",
-"\u03b1 \u03b2 \u03c4 M" : "Brazil 9",
-"\u03b1 \u03b2 \u03b2 N" : "Brazil 12",
+"T C B B C B &pi;" : "Yucat \u00e1n",
+"&alpha; &beta; &beta; &Gamma;" : "Mexico, Morelos, and Veracruz",
+"&alpha; &beta; &tau; M" : "Brazil 9",
+"&alpha; &beta; &beta; N" : "Brazil 12",
 "C F N" : "Brazil 5",
-"B B Q \u03c3 \u03bc" : "Brazil",
+"B B Q &sigma; &mu;" : "Brazil",
 "x" : "x",
 "B B M" : "Salta",
-"E \u03a6 \u03a6 \u03a6 \u03a6 \u03a6" : "Puerto Rico",
+"E &Phi; &Phi; &Phi; &Phi; &Phi;" : "Puerto Rico",
 "1 F M 3" : "Israel-tailed-1FM3",
 "1 2 M 3" : "Israel-tailed-12M3",
 "1 4" : "Israel non-tailed",
 "M M M Q" : "Italy 30, Italy 31",
-"5 \u0393 \u0393 \u0393" : "Italy 32",
-"5 \u03a6 \u03a6 \u03a6" : "Italy 16",
+"5 &Gamma; &Gamma; &Gamma;" : "Italy 32",
+"5 &Phi; &Phi; &Phi;" : "Italy 16",
 "Q M Q Q M" : "Italy 6",
 "Q N N N" : "Italy 8",
 "6 7 7 7" : "Italy 47",
@@ -406,23 +406,23 @@ var $strain_dict={
 "K B M H" : "Stillwater 483, OK",
 "G" : "Oregon",
 "4 9 10 11 9" : "Aguascalientes, Mexico",
-"\u03b1 \u03b2 \u03b2 \u0393 \u03b2 \u0393" : "Pichucalco, Mexico",
+"&alpha; &beta; &beta; &Gamma; &beta; &Gamma;" : "Pichucalco, Mexico",
 "12 13 14" : "Puente de Ixtla, Mexico",
-"\u03b1 \u03b2 \u03b2 \u03b2 \u03b2 \u0393" : "Parana, Brazil",
+"&alpha; &beta; &beta; &beta; &beta; &Gamma;" : "Parana, Brazil",
 "16 F 17 13 18" : "Parana 2, Brazil",
-"\u03c4 10 15" : "Parana 3, Brazil",
-"\u03a3 B Q B C" : "Virasoro, Argentina",
+"&tau; 10 15" : "Parana 3, Brazil",
+"&Sigma; B Q B C" : "Virasoro, Argentina",
 "F M M" : "Entre Rios 1,2,3,4, Argentina",
-"\u03b1 \u03b2 \u03b2 \u03b2 \u0393" : "Santa Fe 37,43,50,59, Argentina",
+"&alpha; &beta; &beta; &beta; &Gamma;" : "Santa Fe 37,43,50,59, Argentina",
 "B B M" : "Salta, Santa Fe 111,473,532,116, Argentina",
-"\u03c4 22 13 18" : "Chaco 2-1, Chaco 3-1, Chaco 7, Chaco 8, Argentina",
-"\u03b1 \u03b2 \u0393 \u0393 \u03b2 \u03b2 \u0393" : "Chaco 2 var2, Argentina",
-"\u03c4 11 10 10 11 10 15" : "Chaco 3 var2, Argentina",
-"\u03c4 10 15" : "Chaco 5, Argentina - Parana 3, Brazil",
+"&tau; 22 13 18" : "Chaco 2-1, Chaco 3-1, Chaco 7, Chaco 8, Argentina",
+"&alpha; &beta; &Gamma; &Gamma; &beta; &beta; &Gamma;" : "Chaco 2 var2, Argentina",
+"&tau; 11 10 10 11 10 15" : "Chaco 3 var2, Argentina",
+"&tau; 10 15" : "Chaco 5, Argentina - Parana 3, Brazil",
 "23 24 25 26 27 27" : "Cordoba 1, Cordoba 2, Argentina",
 "28 29 M 29 M F" : "Quitilipi, Argentina",
 "23 30 31 31 31" : "Mercedes, Argentina",
-"\u03b1 \u03b2 \u03b2 \u03b2" : "Corrientes, Argentina",
+"&alpha; &beta; &beta; &beta;" : "Corrientes, Argentina",
 "A B B B B" : "Havana, Cuba",
 "1 F M 3 3" : "Azaria, Israel",
 "M F F F" : "Lhavot-Habasan",
