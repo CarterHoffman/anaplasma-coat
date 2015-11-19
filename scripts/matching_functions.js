@@ -28,9 +28,9 @@ function handleprotein() {
 	$isprotien=Boolean(true);
 	var $found=look_for_repeats($inquestion);
 	if ($found[0]) {
-	    document.repeat.theRepeat4.value=$found[1];
+	    document.getElementById('theRepeat4').innerHTML="found in protein:</br>"+$found[1];
 	} else {
-	    document.repeat.theRepeat4.value=$found[1];
+	    document.getElementById('theRepeat4').innerHTML="found in protein:</br>"+$found[1];
 	}
 	$isprotien=Boolean(false);
 
@@ -53,12 +53,12 @@ function handledna() {
 
 function erase() {
 	// clears all the fields
-	document.repeat.basepair.value="";
-	document.repeat.theRepeat1.value="";
-	document.repeat.theRepeat2.value="";
-	document.repeat.theRepeat3.value="";
-	document.repeat.theRepeat4.value="";
-	document.repeat.basepair.focus();
+	document.getElementById('basepair').value="";
+	document.getElementById('theRepeat1').innerHTML="found in frame 1:</br>"
+	document.getElementById('theRepeat2').innerHTML="found in frame 2:</br>"
+	document.getElementById('theRepeat3').innerHTML="found in frame 3:</br>"
+	document.getElementById('theRepeat4').innerHTML="found in protein:</br>"
+	document.getElementById('basepair').focus();
 }
 
 function esplainin() {
@@ -92,15 +92,15 @@ function readingframe($transcription) {
 		var $kansas4=mystery(translation($mirror));
 		var $kansas5=mystery(translation($mirror.slice(1)));
 		var $kansas6=mystery(translation($mirror.slice(2)));
-		document.repeat.theRepeat1.value=$kansas4+" [includes r.c.]";
-		document.repeat.theRepeat2.value=$kansas5+" [includes r.c.]";
-		document.repeat.theRepeat3.value=$kansas6+" [includes r.c.]";
+
+        document.getElementById('theRepeat1').innerHTML="found in frame 1:</br>"+$kansas4[1]+" [includes r.c.]";
+        document.getElementById('theRepeat2').innerHTML="found in frame 2:</br>"+$kansas5[1]+" [includes r.c.]";
+        document.getElementById('theRepeat3').innerHTML="found in frame 3:</br>"+$kansas6[1]+" [includes r.c.]";
 	} else {
 
-		document.repeat.theRepeat1.value=$kansas1[1];
-		document.repeat.theRepeat2.value=$kansas2[1];
-		document.repeat.theRepeat3.value=$kansas3[1];
-
+        document.getElementById('theRepeat1').innerHTML="found in frame 1:</br>"+$kansas1[1];
+        document.getElementById('theRepeat2').innerHTML="found in frame 2:</br>"+$kansas2[1];
+        document.getElementById('theRepeat3').innerHTML="found in frame 3:</br>"+$kansas3[1];
 	}
 }
 
@@ -429,7 +429,11 @@ function assemble_matches($haystack) {
         kmp_search($k, $haystack, 0, $first_round);
     }
 
-    if ($first_round.length==0) {
+    if ($first_round.length==0) {      
+        if ($haystack.length>60) {
+            $smaller=$haystack.match(/.{1,60}/g);             
+            $haystack=$smaller.join(' ');
+        }          
         return $haystack;      
     } else {
     // merge() is now overlap(), because the name was already taken by javascript    
@@ -483,7 +487,12 @@ function assemble_matches($haystack) {
             }
         }     
     }
-
+    for (var $n in $final) {
+        if ($final[$n].length>60) {
+            $smaller=$final[$n].match(/.{1,60}/g); 
+            $final[$n]=$smaller.join(' ');   
+        }    
+    }
     return $final
     }
 
@@ -515,7 +524,7 @@ function look_for_repeats($haystack) {
 
     if ($braid.join('').search('^0+$')>-1) {
       
-        var $results=Array(Boolean(false), 'returns '+$final+'\n-is not a known strain');
+        var $results=Array(Boolean(false), 'returns '+$final+"</br>- this script doesn't have any motifs that match the sequence");
      
     } else if ($braid.join('').search('^0*1+0*$')>-1) { 
      
@@ -528,17 +537,14 @@ function look_for_repeats($haystack) {
         var $thestrain=$strain_dict[$done.join(' ')];
 
         if ($thestrain) {
-            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',\n found strain '+$thestrain);
-            //document.repeat.theRepeat4.value='returns '+$final.join(', ')+',\n found strain '+$thestrain;
+            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br> and found the strain '+$thestrain);
         } else {
-            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',\n-but doesn\'t match a strain');
-            //document.repeat.theRepeat4.value='returns '+$final.join(', ')+',\nbut doesn\'t match a strain';
+            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br>- but this script doesn\'t have a match for that strain');
         }
 
     } else { 
 
-        var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',\n-but doesn\'t match a strain');
-        //document.repeat.theRepeat4.value='returns '+$final.join(', ')+',\nbut doesn\'t match a strain';
+        var $results=Array(Boolean(true), 'returns '+$final+"</br>- this script doesn't have any motifs that match the sequence");
     }
 
 return $results;
