@@ -429,7 +429,11 @@ function assemble_matches($haystack) {
         kmp_search($k, $haystack, 0, $first_round);
     }
 
-    if ($first_round.length==0) {
+    if ($first_round.length==0) {      
+        if ($haystack.length>60) {
+            $smaller=$haystack.match(/.{1,60}/g);             
+            $haystack=$smaller.join(' ');
+        }          
         return $haystack;      
     } else {
     // merge() is now overlap(), because the name was already taken by javascript    
@@ -483,7 +487,12 @@ function assemble_matches($haystack) {
             }
         }     
     }
-
+    for (var $n in $final) {
+        if ($final[$n].length>60) {
+            $smaller=$final[$n].match(/.{1,60}/g); 
+            $final[$n]=$smaller.join(' ');   
+        }    
+    }
     return $final
     }
 
@@ -535,7 +544,7 @@ function look_for_repeats($haystack) {
 
     } else { 
 
-        var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br>- but this script doesn\'t have a match for that strain');
+        var $results=Array(Boolean(true), 'returns '+$final+"</br>- this script doesn't have any motifs that match the sequence");
     }
 
 return $results;
