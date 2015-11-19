@@ -530,12 +530,12 @@ function look_for_repeats($haystack) {
         if ($thestrain) {
             var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br> and found the strain '+$thestrain);
         } else {
-            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br>-but this script doesn\'t have a match for this strain');
+            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br>-but this script doesn\'t have a match for that strain');
         }
 
     } else { 
 
-        var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br>-but this script doesn\'t have a match for this strain');
+        var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br>-but this script doesn\'t have a match for that strain');
     }
 
 return $results;
