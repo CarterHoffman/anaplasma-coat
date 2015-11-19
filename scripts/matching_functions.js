@@ -515,7 +515,7 @@ function look_for_repeats($haystack) {
 
     if ($braid.join('').search('^0+$')>-1) {
       
-        var $results=Array(Boolean(false), 'returns '+$final+"</br>-this script doesn't have a match for that sequence");
+        var $results=Array(Boolean(false), 'returns '+$final+"</br>- this script doesn't have any motifs that match the sequence");
      
     } else if ($braid.join('').search('^0*1+0*$')>-1) { 
      
@@ -530,12 +530,12 @@ function look_for_repeats($haystack) {
         if ($thestrain) {
             var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br> and found the strain '+$thestrain);
         } else {
-            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br>-but this script doesn\'t have a match for that strain');
+            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br>- but this script doesn\'t have a match for that strain');
         }
 
     } else { 
 
-        var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br>-but this script doesn\'t have a match for that strain');
+        var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br>- but this script doesn\'t have a match for that strain');
     }
 
 return $results;
