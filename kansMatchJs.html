@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+
 <!-- Script written by Carter Hoffman -->
 
 <script src="scripts/matching_functions.js"></script>
@@ -15,8 +16,11 @@
 <body>
 <div id='contain'>
 <form name="repeat">
+
+
+
 <ul>
-<li><h1>MSP1a Repeats</h1><p class='vrs'>v1.4</p><h3>from DNA or protien sequence</h3></li>
+<li><h1>MSP1a Repeats</h1><p class='vrs'>v1.4.1</p><h3>from DNA or protien sequence</h3></li>
 
 <li>Copy and paste your DNA or protein sequence in the large box.  It doesn't matter if it's upper or lower case.  It also doesn't matter if there's white spaces, or carriage returns, or tabs, or numbers, or funny signs like '#' or '*' peppering the sequence.  The script will strip all that out and try to match any repeats in the string that remains.</li>
 <li>For a test example, copy and paste this DNA sequence for the South African strain SW114.</li>
@@ -32,18 +36,18 @@ AGCAGCCAAAGCGGT</pre>
 </li>
 
 
-<li><textarea cols='60' rows='5' name='basepair'></textarea></li>
+<li><textarea cols='60' rows='5' id='basepair'></textarea></li>
 <li>
 	this sequence is <input type="button" value="DNA" onClick="handledna()">
 
 	<input type="button" value="protein" onClick="handleprotein()">
-	<span id='clearout'><input type="button" value="clear the boxes" onClick="erase()"></span>
+	<span id='clearout'><input type="button" value="clear the box and results" onClick="erase()"></span>
 </li>
 
-<li>found in frame 1: <textarea cols='60' rows='4' name="theRepeat1"></textarea></li>
-<li>found in frame 2: <textarea cols='60' rows='4' id="theRepeat2"></textarea></li>
-<li>found in frame 3: <textarea cols='60' rows='4' id="theRepeat3"></textarea></li>
-<li>found in protein:</br> <textarea cols='60' rows='4' name="theRepeat4"></textarea></li>
+<li id="theRepeat1">found in frame 1:</br> </li>
+<li id="theRepeat2">found in frame 2:</br> </li>
+<li id="theRepeat3">found in frame 3:</br> </li>
+<li id="theRepeat4">found in protein:</br> </li>
 </ul>
 </form>
 <p id='note'>Internet Explorer might alert you that it is restricting active content on this page.  For this script to work, you need to select the 'allow blocked content' option after clicking on the alert bar.</p>
@@ -55,6 +59,7 @@ AGCAGCCAAAGCGGT</pre>
 <li><a href='index.html'>main page</a></li>
 </ul>
 </div>
+
 </body>
 
 </html>
