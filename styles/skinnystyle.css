@@ -1,6 +1,7 @@
 
 body {
 	/* image from www.k10k.net */
+    background-image: none;
 	font-family: "franklin gothic book", helvetica, san-serif, georgia;
 	line-height: 1.3em;
 	font-size: 18px;
