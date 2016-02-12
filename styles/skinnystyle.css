@@ -59,7 +59,7 @@ a:active {color: #06c; text-decoration: none; border-bottom: 1px dashed #06c;}
 	padding: 10px 10px 0px 10px;
 	width: 95%;
 	background-color: #fff;
-	border: none;
+	border: 4px 0px 0px 0px solid #373;
 }
 #hid {
 	/* display: none; */
