@@ -52,11 +52,12 @@ sub {
 
 #protien {
 	position: absolute;
-	left: 0%;
-	top: 0%;
+	left: 0px;
+	top: 0px;
 	margin: 20px 0px 0px 0px;
 	padding: 10px 10px 0px 10px;
-	width: 95%;
+	width: 99%;
+    height: 100%
 	background-color: #fff;
 	border: 4px 0px 0px 0px solid #373;
 	}
