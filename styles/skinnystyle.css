@@ -60,11 +60,14 @@ a:active {color: #06c; text-decoration: none; border-bottom: 1px dashed #06c;}
 	position: absolute;
 	left: 0%;
 	top: 0%;
-	margin: 20px 0px 0px 0px;
+	margin: 8% 0px 0px 0px;
 	padding: 10px 10px 0px 10px;
 	width: 95%;
+	height: 95%;
 	background-color: #fff;
-	border: 4px 0px 0px 0px solid #373;
+	border-width: 4px 0px 0px 0px;
+	border-color: #373;
+	border-style: solid;
 }
 #hid {
 	/* display: none; */
