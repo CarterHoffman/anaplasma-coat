@@ -1,0 +1,188 @@
+body {
+	font-family: "franklin gothic book", helvetica, sans-serif;
+	background-image: url("../images/img_38.GIF");
+	font-size: 18px;
+	}
+h1, h2, h4, h3 {
+	font-weight: normal;
+	display: inline;
+	font-size: 22px;
+	}
+h2 {
+	margin: 0px 0px 0px 20px;
+	font-style: italic;
+	font-size: 18px;
+	}
+h4 {
+	margin: 0px 0px 0px 20px;
+	font-style: italic;
+	font-size: 14px;
+	color: #373;
+	}
+li {
+	list-style: none;
+	margin: 8px 0px 3px 0px;
+	}
+a {
+	color: #06c; 
+	text-decoration: none; 
+	border-bottom: 1px dashed #06c;
+	padding: 0px;
+	}
+a:link {color: #06c; text-decoration: none; border-bottom: 1px dashed #06c;}
+a:visited {color: #06c; text-decoration: none; border-bottom: 1px dashed #06c;}
+a:hover {text-decoration: none; background-color: #d8f0ff;}
+a:active {color: #06c; text-decoration: none; border-bottom: 1px dashed #06c;}
+
+sub {
+	font-size: .8em;
+	}
+
+#nav {
+	border-bottom: 1px solid #000;
+	margin: 0px 0px 20px 0px;
+	padding: 0px 0px 20px 0px;
+	}
+#nav li {
+	margin: 0px;
+	padding: 0px 0px 0px 10px;
+	list-style: none;
+	display: inline;
+	}
+
+#protien {
+	position: absolute;
+	left: 0%;
+	top: 0%;
+	margin: 20px 0px 0px 0px;
+	padding: 10px 10px 0px 10px;
+	width: 95%;
+	background-color: #fff;
+	border: 4px 0px 0px 0px solid #373;
+	}
+#protien td {
+	background-color: #eee;
+	width: 80px;
+	padding: 6px 0px 6px 6px;
+	}
+#protien tr, td, {
+	margin: 2px;
+	}
+#protien table {
+	margin: 20px 2px 2px 2px;
+	font-size: 15px;
+	}
+#line td {
+	background-color: #fff;
+	border-bottom: 1px solid #000;
+	}
+#ticks {
+	width: 800px;
+	position: absolute;
+	left: 50%;
+	margin: 0px 0px 50px -420px;
+	padding: 50px;
+	border: 2px solid #553;
+	background-color: #fff;
+	voice-family: "\"}\""; 
+	voice-family:inherit;
+	width: 750px;
+	}
+#ticks table {
+	font-size: 12px;
+	margin: 20px 0px 0px 30px;
+	}
+#ticks tr {
+	background-color: #fff;
+	}
+#ticks td {
+	width: 20px;
+	height: 20px;
+	text-align: center;
+	border: 1px solid #fff;
+	color: #efefef;
+	background-color: #efefef;
+	}
+#ticks th {
+	text-align: left;
+	font-weight: normal;
+	font-size: 16px;
+	}
+
+#ticks .lead {
+	background-color: #fff;
+	color: #000;
+	padding: 0px 0px 0px 10px;
+	}
+#ticks .done {
+	background-color: #777;
+	color: #777;
+	}
+#ticks .most {
+	background-color: #777;
+	color: #fff;
+	font-family: "franklin gothic demi", helvetica, sans-serif;
+	font-size: 14px;
+	}
+
+#comments {
+	width: 690px;
+	border: 1px solid #ffe020;
+	margin: 20px 0px 0px 0px;
+	padding: 20px;
+	background-color: #fffff0;
+	font-size: 13px;
+	voice-family: "\"}\""; 
+	voice-family:inherit;
+	width: 650px
+	}
+#comments h3 {
+	font-size: 18px;
+	}
+#comments p {
+	margin: 5px 0px 0px 30px;
+	}
+#comments ol li {
+	list-style-type: decimal;
+	}
+#comments ol ul li {
+	list-style-type: none;
+	}
+
+/*
+++++++++++++++++++++++++++++++++++++++
+	for the kansas herd
+++++++++++++++++++++++++++++++++++++++
+*/
+
+.pete {
+	/* color: #709970; */
+	}
+.new {
+	color: #FF4500;
+	}
+.notdone {
+	color: #ccc;
+	}
+.twice {
+	font-family: "Franklin Gothic Demi";
+	}
+.colorblock {
+	font-family: webdings;
+	}
+
+#cows td {
+	width: 150px;
+}
+#cows li {
+	list-style-type: decimal;
+}
+#repeats li {
+	margin: none;
+	padding: 3px 0px 0px 2px;
+
+	letter-spacing: 2px;
+}
+#cows .notinterested {
+	background-color: #fff;
+}
