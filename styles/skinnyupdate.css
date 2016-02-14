@@ -1,6 +1,6 @@
 body {
 	font-family: "franklin gothic book", helvetica, sans-serif;
-	background-image: url("../images/img_38.GIF");
+	background: url("../images/img_38.GIF") #fff;
 	font-size: 18px;
 	}
 h1, h2, h4, h3 {
