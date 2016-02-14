@@ -55,7 +55,7 @@ sub {
 	left: 0px;
 	top: 0px;
 	margin: 20px 0px 0px 0px;
-	padding: 10px 10px 0px 10px;
+	padding: 10px 10px 0px 50%;
 	width: 99%;
 	background-color: #fff;
 	border: 4px 0px 0px 0px solid #373;
