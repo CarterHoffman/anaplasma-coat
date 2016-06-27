@@ -65,7 +65,6 @@ var userSeq=function(seq) {
     this.rseq=$reflection.join('');
 };
 
-<<<<<<< HEAD
 userSeq.prototype.forward=function() {
     console.log("forward sequence is "+ this.seq);
 };
@@ -73,23 +72,6 @@ userSeq.prototype.forward=function() {
 userSeq.prototype.revcom=function() {
     console.log("reverse sequence is "+this.rseq)
 };
-=======
-		var $mirror=revcom($transcription);
-		var $kansas4=mystery(translation($mirror));
-		var $kansas5=mystery(translation($mirror.slice(1)));
-		var $kansas6=mystery(translation($mirror.slice(2)));
-
-        document.getElementById('theRepeat1').innerHTML="found in frame 1:</br>"+$kansas4[1]+" [includes r.c.]";
-        document.getElementById('theRepeat2').innerHTML="found in frame 2:</br>"+$kansas5[1]+" [includes r.c.]";
-        document.getElementById('theRepeat3').innerHTML="found in frame 3:</br>"+$kansas6[1]+" [includes r.c.]";
-	} else {
-
-        document.getElementById('theRepeat1').innerHTML="found in frame 1:</br>"+$kansas1[1];
-        document.getElementById('theRepeat2').innerHTML="found in frame 2:</br>"+$kansas2[1];
-        document.getElementById('theRepeat3').innerHTML="found in frame 3:</br>"+$kansas3[1];
-	}
-}
->>>>>>> 142c7345a5756b76beafe425296d853d576b956b
 
 
 userSeq.prototype.readingframes=function($direction) {
