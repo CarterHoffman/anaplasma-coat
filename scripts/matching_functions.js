@@ -36,21 +36,6 @@ function handleprotein() {
 
 }
 
-function handledna() {
-	/*
-		converts basepair.value to uppercase, and
-		replaces all the whitespace and non-word character.
-		sends to readingframe()		
-		
-		the sequence scrubbing needs to be moved to the 
-		functions that work with them, or write one scrubbing
-		function that assigns a variable
-	*/
-	var $basepairs=document.repeat.basepair.value.toLowerCase().replace(/\s/g, '').replace(/[^atgc]/g, '').replace(/[0-9]/g, '');
-	readingframe($basepairs);
-}
-
-
 function erase() {
 	// clears all the fields
 	document.getElementById('basepair').value="";
@@ -61,37 +46,109 @@ function erase() {
 	document.getElementById('basepair').focus();
 }
 
-function esplainin() {
-	// what's this? switching stylesheets?
-	if (hid.style.display=='none') {
-		hid.style.display='block';
-	} else {
-		hid.style.display='none';
-	}
-}
-
 /*
-+++++++++++++++++++++++++++++++++++++++
-	translate bp to amino acid
-+++++++++++++++++++++++++++++++++++++++
+++++++++++++++++++++++++
+    start class
+++++++++++++++++++++++++
 */
 
-function readingframe($transcription) {
-	/*
-		converts $transcription to protein codons, passes
-		to translation(), then to mystery(). if nothing matches,
-		then make a reverse compliment and try again
-	*/
+var userSeq=function(seq) {
+    this.seq=seq.toUpperCase().replace(/\s/g, '').replace(/[^ATCG]/g, '').replace(/[0-9]/g, '');
 
-	var $kansas1=look_for_repeats(translation($transcription));
-	var $kansas2=look_for_repeats(translation($transcription.slice(1)));
-	var $kansas3=look_for_repeats(translation($transcription.slice(2)));
+    var $base_compliments={'A':'T', 'T':'A', 'C':'G', 'G':'C'};
+    var $flip=(this.seq).split('').reverse();
+    var $reflection=new Array();
+    for ($c=0; $c<$flip.length; $c++) {
+        $reflection[$c]=$base_compliments[$flip[$c]];
+    }
+    
+    this.rseq=$reflection.join('');
+};
+
+userSeq.prototype.forward=function() {
+    console.log("forward sequence is "+ this.seq);
+};
+
+userSeq.prototype.revcom=function() {
+    console.log("reverse sequence is "+this.rseq)
+};
+
+
+userSeq.prototype.readingframes=function($direction) {
+    /*
+        returns a list of all the reading frames
+        direction is set to True and designates 
+        the 3' to 5' DNA string, and if set to 'r'
+        will use the reverse compliment
+    */
+    $frames= new Array();
+    if ($direction=='f') {
+        $frames= [this.seq, this.seq.slice(1), this.seq.slice(2)];
+    } else {
+        $frames= [this.rseq, this.rseq.slice(1), this.rseq.slice(2)];
+    }
+    //console.log($frames[0], $frames[1], $frames[2]);
+    return $frames;
+};
+
+userSeq.prototype.to_protein=function($direction) {
+    /*
+        takes the list of reading frames and 
+        generates the protein sequence. if direction
+        is set to 'r', then uses the reverse compliment
+
+        function still assumes all the None returns are
+        from looking up 'XX' or 'X' length codons in the dictionary
+    */
+    $codon_dict={"GCA":"A", "GCC":"A", "GCG":"A", "GCT":"A", "TGT":"C", "TGC":"C", "GAG":"E", "GAA":"E", "GAT":"D", "GAC":"D", "GGT":"G", "GGG":"G", "GGA":"G", "GGC":"G", "TTT":"F", "TTC":"F", "ATC":"I", "ATA":"I", "ATT":"I", "CAT":"H", "CAC":"H", "AAG":"K", "AAA":"K", "ATG":"M", "CTT":"L", "CTG":"L", "CTA":"L", "CTC":"L", "TTA":"L", "TTG":"L", "AAC":"N", "AAT":"N", "CAA":"Q", "CAG":"Q", "CCT":"P", "CCG":"P", "CCA":"P", "CCC":"P", "AGC":"S", "AGT":"S", "TCT":"S", "TCG":"S", "TCC":"S", "TCA":"S", "AGG":"R", "AGA":"R", "CGA":"R", "CGG":"R", "CGT":"R", "CGC":"R", "ACA":"T", "ACG":"T", "ACT":"T", "ACC":"T", "TGG":"W", "GTA":"V", "GTC":"V", "GTG":"V", "GTT":"V", "TAT":"Y", "TAC":"Y", "TAG":".", "TAA":".", "TGA":"."}
+    if ($direction=='f') {
+        var $frame_list=this.readingframes('f');
+    } else {
+        var $frame_list=this.readingframes();
+    }
+
+    var $allframes=new Array;
+    for ($f=0; $f<$frame_list.length; $f++) {
+        var $plaintext=new String;
+        var $beads=$frame_list[$f].match(/.{1,3}/g);
+        for ($c=0; $c<$beads.length; $c++) {
+            var $codon=$codon_dict[$beads[$c]];
+            if ($codon!=undefined) {
+                $plaintext=$plaintext.concat($codon);
+            }
+        }
+        $allframes.push($plaintext.toLowerCase());
+    }
+    //console.log($allframes[0], $allframes[1], $allframes[2]);
+    return $allframes;
+};
+
+/*
+++++++++++++++++++++++++
+    end class
+++++++++++++++++++++++++
+*/
+
+
+function handledna() {
+	/*
+		feeds protein sequences to kmp, displays results
+	*/
+    
+    var $submitted = new userSeq(document.repeat.basepair.value)
+    var $kans=$submitted.to_protein('f')
+
+	var $kansas1=look_for_repeats($kans[0]);
+	var $kansas2=look_for_repeats($kans[1]);
+	var $kansas3=look_for_repeats($kans[2]);
+
 	if ((!$kansas1[0])&&(!$kansas2[0])&&(!$kansas3[0])) {
 
-		var $mirror=revcom($transcription);
-		var $kansas4=mystery(translation($mirror));
-		var $kansas5=mystery(translation($mirror.slice(1)));
-		var $kansas6=mystery(translation($mirror.slice(2)));
+        var $kans2=$submitted.to_protein('r')
+
+	    var $kansas4=look_for_repeats($kans2[0]);
+	    var $kansas5=look_for_repeats($kans2[1]);
+	    var $kansas6=look_for_repeats($kans2[2]);
 
         document.getElementById('theRepeat1').innerHTML="found in frame 1:</br>"+$kansas4[1]+" [includes r.c.]";
         document.getElementById('theRepeat2').innerHTML="found in frame 2:</br>"+$kansas5[1]+" [includes r.c.]";
@@ -102,63 +159,10 @@ function readingframe($transcription) {
         document.getElementById('theRepeat2').innerHTML="found in frame 2:</br>"+$kansas2[1];
         document.getElementById('theRepeat3').innerHTML="found in frame 3:</br>"+$kansas3[1];
 	}
-}
 
-function translation($beads) {
-	/*
-		merged two previous functions
-		now it takes $beads, chops it into 3's
-		gets the aa through the codon_dict and returns
-	*/
-    var $codon_dict={"GCA":"A", "GCC":"A", "GCG":"A", "GCT":"A", "TGT":"C", "TGC":"C", "GAG":"E", "GAA":"E", "GAT":"D", "GAC":"D", "GGT":"G", "GGG":"G", "GGA":"G", "GGC":"G", "TTT":"F", "TTC":"F", "ATC":"I", "ATA":"I", "ATT":"I", "CAT":"H", "CAC":"H", "AAG":"K", "AAA":"K", "ATG":"M", "CTT":"L", "CTG":"L", "CTA":"L", "CTC":"L", "TTA":"L", "TTG":"L", "AAC":"N", "AAT":"N", "CAA":"Q", "CAG":"Q", "CCT":"P", "CCG":"P", "CCA":"P", "CCC":"P", "AGC":"S", "AGT":"S", "TCT":"S", "TCG":"S", "TCC":"S", "TCA":"S", "AGG":"R", "AGA":"R", "CGA":"R", "CGG":"R", "CGT":"R", "CGC":"R", "ACA":"T", "ACG":"T", "ACT":"T", "ACC":"T", "TGG":"W", "GTA":"V", "GTC":"V", "GTG":"V", "GTT":"V", "TAT":"Y", "TAC":"Y", "TAG":"Stop", "TAA":"Stop", "TGA":"Stop"};
-
-    var $plaintext=new String;
-    var $beads=$beads.toUpperCase().match(/.{1,3}/g);
-    for ($c=0; $c<$beads.length; $c++) {
-        var $codon=$codon_dict[$beads[$c]];
-        $plaintext=$plaintext.concat($codon);
-    }
-    return $plaintext.toLowerCase();
 }
 
 
-
-/*
-++++++++++++++++++++++++++++++++
-	make reverse complement
-++++++++++++++++++++++++++++++++
-*/
-
-/*
-	these can be replaced with one function
-*/
-
-// strips oligo into an array for "downtown" to handle
-function revcom(deboned) {
-	var $flip=(deboned.split('')).reverse();
-	$reflection=new Array();
-	for ($c=0; $c<$flip.length; $c++) {
-		$reflection[$c]=downtown($flip[$c]);
-	}
-	$done=$reflection.join('');
-	return $done;
-}
-
-// replaces codon with its complement and returns to "revcon"
-function downtown($whoop) {
-	if ($whoop=='a') {
-		$whoop='t';
-	} else if ($whoop=='t') {
-		$whoop='a';
-	} else if ($whoop=='c') {
-		$whoop='g';
-	} else if ($whoop=='g') {
-		$whoop='c';
-	} else if ($whoop=='n') {
-		$whoop='n';
-	}
-	return $whoop;
-}
 
 /*
 ++++++++++++++++++++++++++++++++
@@ -166,14 +170,12 @@ function downtown($whoop) {
 ++++++++++++++++++++++++++++++++
 */
 
-
-
 	$substitute=new Array();
 	$substitute[0]='Italy 6';
 	$substitute[1]='Italy 7';
 
 
-// done, 'merge' is already used by javascript
+// 'merge' is already used by javascript
 function overlap($data_range) { 
     /*
         got this off stackoverflow, it's dope
@@ -215,7 +217,6 @@ function overlap($data_range) {
     return $merged_data
 }
 
-// done
 function known_unknowns($spans, $seq_length) { 
     /*
         take the list of tuples in spans, create new tuples
@@ -273,8 +274,7 @@ function known_unknowns($spans, $seq_length) {
     // need to return this as sorted
     return $donewith;
 }
- 
-// done   
+    
 function initnext($needle) { 
     /*
         generates the next table for patterns used in kmp_search
@@ -298,8 +298,7 @@ function initnext($needle) {
     }
     return $next
 }
- 
-// done  
+  
 function kmp_search($needle, $haystack, $start, $matches) { 
     /*
         searches haystack for matches to $needle
@@ -366,8 +365,7 @@ function kmp_search($needle, $haystack, $start, $matches) {
     }
     return $matches; 
 } 
-
-// done      
+      
 function bedtok($dupe, $prefix, $suffix) { 
     /*
         checks for those repeats that will cause false positives
@@ -410,7 +408,6 @@ function bedtok($dupe, $prefix, $suffix) {
     }
 }
 
-// done
 function assemble_matches($haystack) { 
 
     /*
@@ -498,7 +495,6 @@ function assemble_matches($haystack) {
 
 }
 
-// done
 function look_for_repeats($haystack) {     
     /*
         1) assemble repeat matches in haystack with assemble_matches()
@@ -508,6 +504,7 @@ function look_for_repeats($haystack) {
             if yes, look for a strain match
     */    
     var $final=assemble_matches($haystack);
+
 
     // not sure how to do this by searching arrays
     // not gonna care right now
@@ -520,14 +517,15 @@ function look_for_repeats($haystack) {
         }
     }
 
+
     //  match 0 or more '0' followed by 1 or more '1' followed by 0 or more '0'
 
     if ($braid.join('').search('^0+$')>-1) {
-      
+
         var $results=Array(Boolean(false), 'returns '+$final+"</br>- this script doesn't have any motifs that match the sequence");
      
     } else if ($braid.join('').search('^0*1+0*$')>-1) { 
-     
+    
         var $done=new Array();
         for (var $f in $final) {
             if ($final[$f]==$final[$f].toUpperCase()) {
@@ -539,7 +537,7 @@ function look_for_repeats($haystack) {
         if ($thestrain) {
             var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br> and found the strain '+$thestrain);
         } else {
-            var $results=Array(Boolean(true), 'returns '+$final.join(', ')+',</br>- but this script doesn\'t have a match for that strain');
+            var $results=Array(Boolean(true), 'returns '+$final+',</br>- but this script doesn\'t have a match for that strain');
         }
 
     } else { 
