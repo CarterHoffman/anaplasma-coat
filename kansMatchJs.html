@@ -2,6 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
 <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Script written by Carter Hoffman -->
 
@@ -9,9 +10,9 @@
 <script src="scripts/repeat_and_strains.js"></script>
 
 
-
 <link rel="stylesheet" type="text/css" href="styles/kansaspstyle.css" media="print" />
-<link rel="stylesheet" type="text/css" href="styles/scriptstyle.css" media="screen" />
+<link rel="stylesheet" type="text/css" href="styles/scriptstyle.css" media="screen and (min-width: 451px)" />
+<link rel="stylesheet" type="text/css" href="styles/skinnystyle.css" media="screen and (max-width: 450px)" />
 </head>
 <body>
 <div id='contain'>
@@ -36,7 +37,7 @@ AGCAGCCAAAGCGGT</pre>
 </li>
 
 
-<li><textarea cols='60' rows='5' id='basepair'></textarea></li>
+<li><textarea id='basepair'></textarea></li>
 <li>
 	this sequence is <input type="button" value="DNA" onClick="handledna()">
 
