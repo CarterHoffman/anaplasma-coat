@@ -2,7 +2,7 @@
 
 <p>This script will take DNA or protein sequences and search for the repeated motifs of MSP1a, then display the results in the order that they occur in the sequence.  If searching DNA, the script translates all three reading frames to amino acids and searches for repeats.  If no match is found, it constructs the reverse complement and repeats the search again in all three reading frames.</p>
 
-<p>A working copy of the script can be found <a href="http://greenbarnstar.github.io/anaplasma-coat/">here</a>.</p>
+<p>A working copy of the script can be found <a href="http://carterhoffman.github.io/anaplasma-coat/">here</a>.</p>
 
 <p>The inspiration for writing this script came after I had identified several motifs from a batch of <i>A. marginale</i> sequence results, and still had dozens and dozens left. Each motif is different from another by only a few amino acids, and each motif is about 26 AA long. It was hatefull work, and exactly what computers are supposed to do for you. Strain patterns change constantly, so the list of patterns grows all the time. The latest list is Cabezas-Cruz A et. al., PLoS ONE 8(6): e65243. doi:10.1371/journal.pone.0065243</p>
 
